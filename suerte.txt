@@ -1,3 +1,12 @@
-tipo 0 avanzar a ,1 moverse,2 ir a carcel, 3 pase carcel
-num,titulo,tipo,loc,
-1,"Avance a salida",0,
+tipo 0 avanzar a ,1 moverse x pasos,2 ir a carcel, 3 pase carcel, 4 hasta ferrocarril, 5 hasta servicio
+num,titulo,tipo,xx
+1,"Avance a salida",0,0
+2,"Avance a Azul2",0,39
+3,"Avance a Rojo3",0,24
+4,"Avance a Morado1,0,11   
+5,"Avance al ferrocarril mas cercano",4
+6,"Avance al servicio mas cercano",5
+7,"Salir de carcel gratis",3
+8,"Retrocede 3 espacios",1,-3
+9,"Vayase a la carcel",2
+10,"Vaya a Ferrocarril1",0,5

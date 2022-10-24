@@ -1,0 +1,12 @@
+tipo 1 recibir, 2 pagar, 3 pago a todos, 4 recibe de todos
+num,titulo,tipo,cantidad
+1,"Error bancario cobre 200",1,200  
+2,"Tarifa del doctor pague 50",2,50
+3,"Por venta de acciones recibe 50",1,50
+4,"Fondo de vacaciones recibe 100",1,100
+5,"devolucion de impuestos recibe 20,1,20
+6,"Cumpleaños le da 10 cada uno",4,10
+7,"Tarifa de hospital pague 100",2,100
+8,"Tarifa escolar pague 50",2,50
+9,"Segundo lugar en premio de belleza recibe 10",1,10
+10,"Heredas 100",1,100
