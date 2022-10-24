@@ -1,0 +1,3 @@
+tipo 0 avanzar a ,1 moverse,2 ir a carcel, 3 pase carcel
+num,titulo,tipo,loc,
+1,"Avance a salida",0,

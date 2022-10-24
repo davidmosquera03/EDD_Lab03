@@ -1,2 +1,7 @@
 # EDD_Lab03
-Monopolio 
+### Integrantes
++ David Hernández Mosquera
++ María Solá Valle
++ Juan José Aragón
++ Kenny Zhu
+
