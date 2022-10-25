@@ -1,5 +1,3 @@
-
-
 class Nodo:
     def __init__(self,loc:int, name:str,) -> None:
         self.loc = loc
