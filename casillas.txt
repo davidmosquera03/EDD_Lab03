@@ -1,17 +1,18 @@
-loc,name
-0,salida
-1,marron
-2,cofre
+tipo 0 Nodo, 1 Propiedad, 2 Servicio, 3 Ferrocarril, 4 Suerte, 5 Cofre, 6 Impuesto
+loc,name,tipo,arg1,arg2
+0,salida,0
+1,marron,1,
+2,cofre,5
 3,marron1
-4,impuestos
-5,ferrocarril
+4,impuestos,6
+5,ferrocarril,3
 6,blanco
-7,interrogante
+7,interrogante,4
 8,blanco1
 9,blanco2
-10,carcel
+10,carcel,0
 11,magenta
-12,electric_company
+12,electric_company,2
 13,magenta1
 14,magenta2
 15,ferrocarril1
@@ -19,7 +20,7 @@ loc,name
 17,cofre1
 18,naranja1
 19,naranja2
-20,free_parking
+20,free_parking,0
 21,rojo
 22,interrogante1
 23,rojo1

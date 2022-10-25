@@ -1,9 +1,9 @@
 tipo 0 avanzar a ,1 moverse x pasos,2 ir a carcel, 3 pase carcel, 4 hasta ferrocarril, 5 hasta servicio
-num,titulo,tipo,xx
+num,titulo,tipo,arg1
 1,Avance a salida,0,0
-2,Avance a Azul1,0,39
-3,Avance a Rojo2,0,24
-4,Avance a Morado,0,11   
+2,Avance a Azul,0,39
+3,Avance a Rojo,0,24
+4,Avance a Magenta,0,11   
 5,Avance al ferrocarril mas cercano,4
 6,Avance al servicio mas cercano,5
 7,Salir de carcel gratis,3

@@ -1,5 +1,10 @@
 class Nodo:
     def __init__(self,loc:int, name:str,) -> None:
+        """
+        Casilla básica
+        loc: posición en lista
+        name: nombre de la casilla
+        """
         self.loc = loc
         self.name = name
         self.prev = None
@@ -8,35 +13,58 @@ class Nodo:
 class Propiedad(Nodo):
     def __init__(self, loc: int, name: str,costo:int,renta:int,color:str) -> None:
         super().__init__(loc, name)
+        """
+        Casilla que representa propiedad adquirible
+        costo: precio para comprarla
+        renta: cantidad que recibe el dueño cuando alguien cae
+        color: grupo de color al que pertenece
+        owner: nombre de Jugador que lo posee
+        """
         self.costo = costo
         self.renta = renta
         self.color = color
         self.owner = None
-        self.owned = False
+
     def __repr__(self) -> str:
         return f"{self.name} {self.costo}"
 
 class Servicio(Nodo):
     def __init__(self, loc: int, name: str) -> None:
         super().__init__(loc, name)
+        """
+        Casilla que representa un servicio
+        """
         self.owner = None
-        self.owned = False
 
 class Ferrocarril(Nodo):
+        
     def __init__(self, loc: int, name: str) -> None:
+        """
+        Casilla que representa un ferrocarril
+        """
         super().__init__(loc, name)
         self.owner = None
-        self.owned = False
 
-class Arca(Nodo):
-    def __init__(self, loc: int, name: str,goal: int) -> None:
+class Evento(Nodo):
+    def __init__(self, loc: int, name: str) -> None:
         super().__init__(loc, name)
-        self.goal = goal
+        self.file = ".txt"
+        
+    def dar_carta(self):
+        pass
 
-class Cofre(Nodo):
-    def __init__(self, loc: int, name: str,tipo:int,money:int) -> None:
+class Suerte(Evento):
+    file = "suerte.txt"
+
+class Cofre(Evento):
+    file = "cofre.txt"
+
+class Impuesto(Nodo):
+    def __init__(self, loc: int, name: str,pago:int) -> None:
         super().__init__(loc, name)
-        if tipo ==0:
-            self.bono = money
-        else:
-            self.cobro = money
+        """
+        Casilla que representa un impuesto que pagar
+        pago: valor a pagar en esa casilla
+        """
+        self.pago = pago
+    
