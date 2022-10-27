@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+class Player{
++name
++pos:Nodo
++balance
++double_count
+}
+class Game{
++players:dict
++board:Board
++start()
++add_player()
++remove_player()
+}
+class Board{
++PTR
++ULT
+}
+class Nodo{
++loc
++name
++prev
++next
+}

@@ -2,6 +2,7 @@ class Nodo:
     def __init__(self,loc:int, name:str,) -> None:
         """
         Casilla básica
+
         loc: posición en lista
         name: nombre de la casilla
         """
@@ -10,11 +11,15 @@ class Nodo:
         self.prev = None
         self.next = None
 
+    def __repr__(self):
+        return f"{self.name}"
+
 class Propiedad(Nodo):
     def __init__(self, loc: int, name: str,costo:int,renta:int,color:str) -> None:
         super().__init__(loc, name)
         """
         Casilla que representa propiedad adquirible
+
         costo: precio para comprarla
         renta: cantidad que recibe el dueño cuando alguien cae
         color: grupo de color al que pertenece
@@ -64,6 +69,7 @@ class Impuesto(Nodo):
         super().__init__(loc, name)
         """
         Casilla que representa un impuesto que pagar
+        
         pago: valor a pagar en esa casilla
         """
         self.pago = pago
