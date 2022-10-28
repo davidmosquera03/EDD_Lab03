@@ -4,7 +4,7 @@ loc,name,tipo,arg1,arg2
 1,marron,1,60
 2,cofre,5,
 3,marron1,60
-4,impuestos,6,
+4,impuestos,6,200
 5,ferrocarril,3,200
 6,blanco,1,100
 7,interrogante,4,
@@ -28,7 +28,7 @@ loc,name,tipo,arg1,arg2
 25,ferrocarril2,3,200
 26,amarillo,1,260
 27,amarillo1,1,260
-28,water_works,2
+28,water_works,2,150
 29,amarillo2,1,280
 30,a_la_carcel,
 31,verde,1,300
@@ -38,5 +38,5 @@ loc,name,tipo,arg1,arg2
 35,ferrocarril3,3,200
 36,interrogante2,4
 37,azul,1,350
-38,luxuri_tax,6
+38,luxuri_tax,6,100
 39,azul1,1,400
