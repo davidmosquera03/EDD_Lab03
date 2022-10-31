@@ -3,14 +3,14 @@ Version 0.2 of the laboratory 3, made in Python. By David Hernandez, María Sol�
 
 ## Roadmap
 - [x] Archivos de casillas, cofre y arca
-- []  Terminar casillas.txt
+- [X]  Terminar casillas.txt
 - []  Implementar generador de tablero
-- []  Definir GUI
+- [] Añadir Clase Player
 
 ## Minimum requirements
 - [x] Add class diagram
-- [] Use linked lists for property data
-- [] Add name, cost and rent to the property data
+- [x] Use linked lists for property data
+- [x] Add name, cost and rent to the property data
 - [] Add player object with needed attributes
 - [] Add multiplayer (at least 2 to 4 players)
 - [] Add dice rolling
