@@ -9,8 +9,8 @@ class Board:
         Crea una Lista
         Doblemente Enlazada Circular
 
-        PTR: pointer,head,primer elemento
-        ULT: tail,cola, ultimo elemento
+        + PTR: pointer,head,primer elemento
+        + ULT: tail,cola, ultimo elemento
         """
         self.PTR = None
         self.ULT = None   
@@ -71,6 +71,8 @@ class Board:
             P = P.next
         print(P,"<->",P.next,"(PTR)")
 
+"""
+TEST
 a = Board()
 s = Nodo(0,"Salida")
 a.add_node2(s)
@@ -78,3 +80,4 @@ a.add_property(1,"Brown",10,5,"brown")
 a.add_node(2,"Carcel")
 a.add_property(3,"Brown1",12,6,"brown")
 a.recorrer_PTR()
+"""

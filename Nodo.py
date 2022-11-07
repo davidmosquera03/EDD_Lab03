@@ -30,9 +30,6 @@ class Propiedad(Nodo):
         self.color = color
         self.owner = None
 
-    def __repr__(self) -> str:
-        return f"{self.name} {self.costo}"
-
 class Servicio(Nodo):
     def __init__(self, loc: int, name: str) -> None:
         """

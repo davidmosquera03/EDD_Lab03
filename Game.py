@@ -65,7 +65,7 @@ class Game:
 
         data[1]: titulo
         data[2]: tipo de carta
-        data[3]: argumento
+        data[3]: argumento (depende de tipo)
         """
         select = randint(1,10)
         with open(file,"r") as f:
@@ -73,4 +73,7 @@ class Game:
                 x = f.readline()
             data = x.split(",")
         print("titulo es ",data[1])
-        return int(data[2]),int(data[3])
+        if file == "cofre.txt" or (file=="suerte.txt" and int(data[2])==0 or int(data[2])==1  ):
+            return int(data[2]),int(data[3])
+        else:
+            return int(data[2]),None

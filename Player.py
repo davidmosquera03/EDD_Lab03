@@ -1,17 +1,44 @@
 from Nodo import Nodo,Propiedad,Servicio,Ferrocarril
 from random import randint
 
+class Inventory(dict):
+    def __init__(self):
+        """
+        Constructor de clase de Inventorio
+
+        inicializa con 4 claves
+        + propiedades,ferrocarriles,servicios:
+        almacenan Nodos de este tipo
+        + pases: cartas de salir de prisión
+        """
+        self["propiedades"] = []
+        self["ferrocarriles"] =[]
+        self["servicios"] = []
+        self["pases"] = 0
+    @property
+    def sellable(self):
+        """
+        Cantidad de recursos que se pueden
+        vender
+        """
+        count = 0
+        for value in self.values():
+            if isinstance(value,list):
+                count += len(value)
+            elif isinstance(value,int):
+                count += value
+        return count
 class Player:
-    def __init__(self,name) -> None:
+    def __init__(self,name:str) -> None:
         """
         Constructor de clase Player
 
-        name: nombre del jugador
-        balance: dinero disponible
-        inventory: registro de cartas que posee
-        double_count: veces que ha sacado par seguidas
-        pos: Casilla en que se encuentra
-        on_jail: está o no encarcelado
+        + name: nombre del jugador
+        + balance: dinero disponible
+        + inventory: registro de cartas que posee
+        + double_count: veces que ha sacado par seguidas
+        + pos: Casilla en que se encuentra
+        + on_jail: está o no encarcelado
         """
         self.name = name
         self.balance = 100
@@ -43,7 +70,7 @@ class Player:
         """
         Adquiere una propiedad sin dueño
 
-        property: Propiedad a adquirir
+        + property: Propiedad a adquirir
         """
         self.inventory["propiedades"].append(property)
         self.withdraw(property.costo) 
@@ -71,21 +98,27 @@ class Player:
         ferrocarril.owner = self.name
         print("propiedades: ",self.inventory["ferrocarriles"])
 
-    def sell(self,property:Nodo):
+    def sell(self,key,name):
         """
-        Vende una propiedad
-        La retira del inventario
+        Vende Propiedad/Servicio/Ferrocarril
         """
-        self.inventory["propiedades"].remove(property)
-        self.deposit(property.costo)
-        print(self.inventory["propiedades"])
+        found = False
+        for value in self.inventory[key]:
+            value:Nodo
+            if value.name == name:
+                found = True
+                self.deposit(value.costo)
+                value.owner = None
+                self.inventory[key].remove(value)
+        if not found:
+            print("No hallado")
     
     def throw_die(self):
         """
         lanzamiento de dado
 
-        amount: suma de los dos dados
-        again: 0 si no sacó par, 1 si obtuvo
+        + amount: suma de los dos dados
+        + again: 0 si no sacó par, 1 si obtuvo
         """
         again = 0
         die1 = randint(1,6)
@@ -100,11 +133,11 @@ class Player:
         amount = die1+die2
         return amount,again
 
-    def jugar_turno2(self):
+    def jugar_turno(self):
         """
         tira dados
         
-        again: devuelve 1 si debe volver a jugar
+        + again: devuelve 1 si debe volver a jugar
         0 si no
         """
         amount,again = self.throw_die()

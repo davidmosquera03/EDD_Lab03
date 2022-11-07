@@ -1,11 +1,26 @@
 @startuml
 left to right direction
+class Inventory{
++sellable:int
+}
 
 class Player{
 +name
++inventory:Inventory
 +pos:Nodo
 +balance
 +double_count
++on_jail:bool
++times_on_jail:int
++withdraw()
++deposit()
++buy()
++sell()
++throw_die()
++jugar_turno()
++jugar_carcel()
+}
+class dict{
 }
 class Game{
 +players:dict
@@ -13,14 +28,44 @@ class Game{
 +start()
 +add_player()
 +remove_player()
++transfer()
++imprison()
++sacar_carta()
 }
+
 class Board{
 +PTR
 +ULT
++addnode()
 }
+
 class Nodo{
 +loc
 +name
 +prev
 +next
 }
+class Propiedad{
++costo
++renta
++owner
+}
+class Servicio{
++costo
++owner
+}
+class Ferrocarril{
++costo
++owner
+}
+Player*--Inventory
+Game o--Player
+Game o-- Board
+Board *-- Nodo
+Inventory <|-- dict
+Nodo <|-- Propiedad
+Nodo <|-- Ferrocarril
+Nodo <|-- Servicio
+Nodo <|-- Cofre
+Nodo <|-- Suerte
+@enduml
