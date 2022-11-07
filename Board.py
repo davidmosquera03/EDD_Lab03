@@ -44,7 +44,7 @@ class Board:
             self.ULT = Q
             self.ULT.next = self.PTR
         self.PTR.prev = self.ULT
-
+        
     def add_property(self,loc:int, name:str, value:int,hipoteca:int,color:str) -> None:
         """
         Añade un nodo como ULT
