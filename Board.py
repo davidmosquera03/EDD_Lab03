@@ -9,8 +9,8 @@ class Board:
         Crea una Lista
         Doblemente Enlazada Circular
 
-        PTR: pointer,head,primer elemento
-        ULT: tail,cola, ultimo elemento
+        + PTR: pointer,head,primer elemento
+        + ULT: tail,cola, ultimo elemento
         """
         self.PTR = None
         self.ULT = None   
@@ -34,6 +34,23 @@ class Board:
         Añade una casilla básica
         """
         Q = Nodo(loc, name)
+        if self.PTR ==None:
+            self.PTR = Q
+            self.ULT = Q
+            self.PTR.next = Q
+        else:
+            self.ULT.next = Q
+            Q.prev = self.ULT
+            self.ULT = Q
+            self.ULT.next = self.PTR
+        self.PTR.prev = self.ULT
+
+        
+    def add_property(self,loc:int, name:str, value:int,hipoteca:int,color:str) -> None:
+        """
+        Añade un nodo como ULT
+        """
+        Q = Propiedad(loc, name, value, hipoteca,color)
         if self.PTR ==None:
             self.PTR = Q
             self.ULT = Q

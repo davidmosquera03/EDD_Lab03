@@ -5,15 +5,15 @@ Version 0.2 of the laboratory 3, made in Python. By David Hernandez, María Sol�
 - [x] Archivos de casillas, cofre y arca
 - [X]  Terminar casillas.txt
 - []  Implementar generador de tablero
-- [] Añadir Clase Player
+- [X] Añadir Clase Player
 
 ## Minimum requirements
 - [x] Add class diagram
 - [x] Use linked lists for property data
 - [x] Add name, cost and rent to the property data
-- [] Add player object with needed attributes
+- [X] Add player object with needed attributes
 - [] Add multiplayer (at least 2 to 4 players)
-- [] Add dice rolling
+- [X] Add dice rolling
 - [x] Use files to save community chest and chance cards
 - [] Implement community chest and chance cards
 - [] Implement property selling

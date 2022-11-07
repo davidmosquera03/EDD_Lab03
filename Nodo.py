@@ -30,47 +30,38 @@ class Propiedad(Nodo):
         self.color = color
         self.owner = None
 
-    def __repr__(self) -> str:
-        return f"{self.name} {self.costo}"
-
 class Servicio(Nodo):
     def __init__(self, loc: int, name: str) -> None:
-        super().__init__(loc, name)
         """
         Casilla que representa un servicio
         """
+        super().__init__(loc, name)
         self.owner = None
           
+        self.costo = 150
+
 class Ferrocarril(Nodo):
-        
     def __init__(self, loc: int, name: str) -> None:
         """
         Casilla que representa un ferrocarril
         """
         super().__init__(loc, name)
         self.owner = None
+        self.costo = 200
 
-class Evento(Nodo):
-    def __init__(self, loc: int, name: str) -> None:
-        super().__init__(loc, name)
-        self.file = ".txt"
-        
-    def dar_carta(self):
-        pass
+class Suerte(Nodo):
+    pass
 
-class Suerte(Evento):
-    file = "suerte.txt"
-
-class Cofre(Evento):
-    file = "cofre.txt"
+class Cofre(Nodo):
+    pass
 
 class Impuesto(Nodo):
     def __init__(self, loc: int, name: str,pago:int) -> None:
-        super().__init__(loc, name)
         """
         Casilla que representa un impuesto que pagar
         
         pago: valor a pagar en esa casilla
         """
+        super().__init__(loc, name)
         self.pago = pago
     
