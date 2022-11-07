@@ -40,7 +40,7 @@ class Servicio(Nodo):
         Casilla que representa un servicio
         """
         self.owner = None
-
+          
 class Ferrocarril(Nodo):
         
     def __init__(self, loc: int, name: str) -> None:

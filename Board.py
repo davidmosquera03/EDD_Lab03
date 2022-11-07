@@ -1,4 +1,4 @@
-from Nodo import Nodo,Propiedad
+from Nodo import Nodo,Propiedad,Servicio
 # Ideas: 
 # Se puede usar el patrón de fabrica para las casillas
 # en add_node2 se recibe el nodo ya instanciado, falta fabrica
@@ -45,22 +45,6 @@ class Board:
             self.ULT.next = self.PTR
         self.PTR.prev = self.ULT
 
-    def add_property(self,loc:int, name:str, value:int,hipoteca:int,color:str) -> None:
-        """
-        Añade un nodo como ULT
-        """
-        Q = Propiedad(loc, name, value, hipoteca,color)
-        if self.PTR ==None:
-            self.PTR = Q
-            self.ULT = Q
-            self.PTR.next = Q
-        else:
-            self.ULT.next = Q
-            Q.prev = self.ULT
-            self.ULT = Q
-            self.ULT.next = self.PTR
-        self.PTR.prev = self.ULT
-
     def recorrer_PTR(self):
         """
         Muestra elementos desde el PTR
@@ -70,11 +54,14 @@ class Board:
             print(P,end="<->")
             P = P.next
         print(P,"<->",P.next,"(PTR)")
+    
+    
 
-a = Board()
-s = Nodo(0,"Salida")
-a.add_node2(s)
-a.add_property(1,"Brown",10,5,"brown")
-a.add_node(2,"Carcel")
-a.add_property(3,"Brown1",12,6,"brown")
-a.recorrer_PTR()
+
+# a = Board()
+# s = Nodo(0,"Salida")
+# a.add_node2(s)
+# a.add_property(1,"Brown",10,5,"brown")
+# a.add_node(2,"Carcel")
+# a.add_property(3,"Brown1",12,6,"brown")
+# a.recorrer_PTR()
