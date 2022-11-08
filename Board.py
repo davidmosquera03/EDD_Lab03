@@ -28,24 +28,7 @@ class Board:
             self.ULT = node
             self.ULT.next = self.PTR
         self.PTR.prev = self.ULT
-
-    def add_node(self, loc: int, name:str):
-        """
-        Añade una casilla básica
-        """
-        Q = Nodo(loc, name)
-        if self.PTR ==None:
-            self.PTR = Q
-            self.ULT = Q
-            self.PTR.next = Q
-        else:
-            self.ULT.next = Q
-            Q.prev = self.ULT
-            self.ULT = Q
-            self.ULT.next = self.PTR
-        self.PTR.prev = self.ULT
-
-        
+  
     def add_property(self,loc:int, name:str, value:int,hipoteca:int,color:str) -> None:
         """
         Añade un nodo como ULT
@@ -72,13 +55,4 @@ class Board:
             P = P.next
         print(P,"<->",P.next,"(PTR)")
     
-    
 
-
-# a = Board()
-# s = Nodo(0,"Salida")
-# a.add_node2(s)
-# a.add_property(1,"Brown",10,5,"brown")
-# a.add_node(2,"Carcel")
-# a.add_property(3,"Brown1",12,6,"brown")
-# a.recorrer_PTR()

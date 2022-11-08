@@ -41,11 +41,8 @@ class Player:
         + on_jail: está o no encarcelado
         """
         self.name = name
-        self.balance = 100
-        self.inventory ={"propiedades":[],
-                        "servicios":[],
-                        "ferrocarriles":[],
-                        "pases":0}
+        self.balance = 1500
+        self.inventory =Inventory()
         self.double_count = 0
         self.pos:Nodo = None
         self.on_jail = False
@@ -65,7 +62,20 @@ class Player:
         """
         self.balance+=amount
         print(self.name," tiene ",self.balance)
-    
+
+    def buy(self,sitio:Nodo):
+
+        if isinstance(sitio,Propiedad):
+            self.inventory["propiedades"].append(sitio)
+        elif isinstance(sitio,Servicio):
+            self.inventory["servicios"].append(sitio)
+        elif isinstance(sitio,Ferrocarril):
+            self.inventory["ferrocarriles"].append(sitio)
+
+        self.withdraw(sitio.costo)
+        sitio.owner = self.name
+        print(self.inventory)
+
     def buy_property(self, property:Propiedad):
         """
         Adquiere una propiedad sin dueño
@@ -112,7 +122,73 @@ class Player:
                 self.inventory[key].remove(value)
         if not found:
             print("No hallado")
-    
+
+    def sell_menu(self):
+        """
+        Menu iterativo para vender 
+        """
+        print("Vendibles ",self.inventory.sellable)
+        if self.inventory.sellable !=0:
+            print("1 Propiedades,2 Ferrocarriles,3 Servicios,4 Pases")
+            valid =["1","2","3","4"]
+            op = input()
+            while op not in valid:
+                print("Opcion inválida")
+                op = input()
+        else:
+            op = 0
+        if op =="1":
+            if len(self.inventory["propiedades"])>0:
+                print(self.inventory["propiedades"])
+                print("Seleccione propiedad a vender")
+                s = input()
+                self.sell("propiedades",s)
+            else:
+                print("No tiene propiedades")
+
+        elif op =="2":
+            if len(self.inventory["ferrocarriles"])>0:
+                print(self.inventory["ferrocarriles"])
+                print("Seleccione ferrocarril a vender")
+                s = input()
+            else:
+                print("No tiene ferrocarriles")
+
+        elif op=="3":
+            if len(self.inventory["servicios"])>0:
+                print(self.inventory["servicios"])
+                print("Seleccione servicio a vender")
+                s = input()
+                self.sell("servicios",s)
+            else:
+                print("No tiene servicios")
+
+        elif op=="4":
+            if self.inventory["pases"]>0:
+                self.deposit(50)
+                self.inventory["pases"] -= 1
+            else:
+                print("No tiene pases")
+        if op==0:
+            print("No tiene nada que vender")
+        else:
+            print(self.inventory)
+
+    def broke(self):
+        """
+        El jugador vende del inventorio
+        para evitar la quiebra
+        """
+        print("¡Está en riesgo de quiebra!")
+        while self.balance<0 and self.inventory.sellable>0:
+            print("¡A Vender!")
+            self.sell_menu()
+
+        if self.balance<0 and self.inventory.sellable==0:
+            print("BANCARROTA!")
+        else:
+            print("Se ha salvado")
+
     def throw_die(self):
         """
         lanzamiento de dado
@@ -144,8 +220,8 @@ class Player:
 
         for i in range(amount):
             self.pos = self.pos.next
-            if self.pos.name == "Salida":
-                print("Ha pasado por salida")
+            if self.pos.name == "salida":
+                print("Ha pasado por salida y cobra 200")
                 self.deposit(200)
         print(self.name," está en ",self.pos)
         return again

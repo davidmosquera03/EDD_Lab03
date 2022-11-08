@@ -1,23 +1,27 @@
 ![Logo](img//monopoly.png)
-Version 0.2 of the laboratory 3, made in Python. By David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
+Version 0.5 of the laboratory 3, made in Python. By David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
 
 ## Roadmap
-- [x] Archivos de casillas, cofre y arca
+- [X] Archivos de casillas, cofre y arca
 - [X]  Terminar casillas.txt
-- []  Implementar generador de tablero
+- [X]  Implementar generador de tablero
 - [X] Añadir Clase Player
-
+- [X] Añadir Clase Game
+- [X] Implementar code_to_run
+- [] Diseño Visual del tablero
+- [] Reorganizar nombres
+ 
 ## Minimum requirements
-- [x] Add class diagram
-- [x] Use linked lists for property data
-- [x] Add name, cost and rent to the property data
+- [X] Add class diagram
+- [X] Use linked lists for property data
+- [X] Add name, cost and rent to the property data
 - [X] Add player object with needed attributes
-- [] Add multiplayer (at least 2 to 4 players)
+- [X] Add multiplayer (at least 2 to 4 players)
 - [X] Add dice rolling
-- [x] Use files to save community chest and chance cards
-- [] Implement community chest and chance cards
-- [] Implement property selling
-- [] Implement rent payments
+- [X] Use files to save community chest and chance cards
+- [X] Implement community chest and chance cards
+- [X] Implement property selling
+- [X] Implement rent payments
 - [] Implement 8 currencies
 - [] Other stuff
 

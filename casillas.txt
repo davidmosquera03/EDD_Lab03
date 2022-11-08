@@ -1,5 +1,5 @@
 tipo 0 Nodo, 1 Propiedad, 2 Servicio, 3 Ferrocarril, 4 Suerte, 5 Cofre, 6 Impuesto
-loc,name,tipo,arg1,arg2
+loc,name,tipo,arg1,arg2s
 0,salida,0,200 
 1,marron,1,60,4
 2,cofre,5,
