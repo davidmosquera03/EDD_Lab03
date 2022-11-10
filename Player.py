@@ -64,7 +64,9 @@ class Player:
         print(self.name," tiene ",self.balance)
 
     def buy(self,sitio:Nodo):
-
+        """
+        Comprar Propiedad/Servicio/Ferrocarril
+        """
         if isinstance(sitio,Propiedad):
             self.inventory["propiedades"].append(sitio)
         elif isinstance(sitio,Servicio):
@@ -75,38 +77,6 @@ class Player:
         self.withdraw(sitio.costo)
         sitio.owner = self.name
         print(self.inventory)
-
-    def buy_property(self, property:Propiedad):
-        """
-        Adquiere una propiedad sin dueño
-
-        + property: Propiedad a adquirir
-        """
-        self.inventory["propiedades"].append(property)
-        self.withdraw(property.costo) 
-        print("new balance: ",self.balance)
-        property.owner = self.name
-        print(self.inventory["propiedades"])
-
-    def buy_service(self,servicio:Servicio):
-        """
-        Adquiere un servicio sin dueño
-        """
-        self.inventory["servicios"].append(servicio)
-        self.withdraw(servicio.costo) 
-        print("new balance: ",self.balance)
-        servicio.owner = self.name
-        print("propiedades: ",self.inventory["servicios"])
-    
-    def buy_ferrocarril(self,ferrocarril:Ferrocarril):
-        """
-         Adquiere un ferrocarril sin dueño
-        """
-        self.inventory["ferrocarriles"].append(ferrocarril)
-        self.withdraw(ferrocarril.costo) 
-        print("new balance: ",self.balance)
-        ferrocarril.owner = self.name
-        print("propiedades: ",self.inventory["ferrocarriles"])
 
     def sell(self,key,name):
         """

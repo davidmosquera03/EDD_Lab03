@@ -4,7 +4,7 @@ from Nodo import Propiedad,Nodo,Servicio,Ferrocarril,Cofre,Suerte,Impuesto
 
 g = Game(tablero)
 g.add_player("dave")
-g.add_player("lucas")
+g.add_player("Nico")
 
 def show_menu(player:Player):
     print(player.name)
@@ -32,12 +32,12 @@ while len(g.players)>1:
         while turnos>0:
             
             if player.on_jail:
-                print("Turno en carcel de ",player.name)
+                print("Turno en carcel de ",player.name,"(encarcelado)")
                 player.jugar_carcel()
                 turnos -= 1
             
             if not player.on_jail:
-                print("turno libre de ",player.name,player.pos) #Nombre y casilla
+                print("Turno de ",player.name,"ubicado en: ",player.pos) #Nombre y casilla
                 repeat = player.jugar_turno()
                 sitio = player.pos
                 
@@ -47,14 +47,17 @@ while len(g.players)>1:
                     sitio = player.pos
 
                 if isinstance(sitio,Propiedad): # Propiedad
-                    print("Costo ",sitio.costo," Dueño ",sitio.owner)
+                    print("Costo ",sitio.costo,"Renta ",sitio.renta
+                            ," Dueño ",sitio.owner)
                     if sitio.owner is None:
                         print("comprar 1 si 2 no")
-                        op = int(input())
-                        if op ==1:
+                        op = input()
+                        while op!="1" and op!="2":
+                            op = input()
+                        if op =="1":
                             player.buy(sitio)
                         else:
-                            print("no la ha comprado")
+                            print("No la ha comprado")
                     elif sitio.owner!=player.name:
                         print("debe pagar ",sitio.renta)
                         g.transfer(player.name,sitio.owner,sitio.renta)
@@ -92,8 +95,9 @@ while len(g.players)>1:
                     player.withdraw(sitio.pago)
                     
                 elif isinstance(sitio,Nodo):
-                    print("sitio es",sitio)
+                    print("sitio es",sitio," loc ",sitio.loc)
                     if sitio.loc==30:
+                        print("A la carcel!")
                         g.imprison(player)  # Si Nodo es vayase a la carcel
                         turnos = 0
 
@@ -103,5 +107,7 @@ while len(g.players)>1:
         op = input("Eliminar 1\n")
         if op =="1":
             g.remove_player(player.name)
+        if player.balance<0:
+            print("Deberia irse ")
 
 

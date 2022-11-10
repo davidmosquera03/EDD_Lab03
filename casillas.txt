@@ -1,42 +1,42 @@
 tipo 0 Nodo, 1 Propiedad, 2 Servicio, 3 Ferrocarril, 4 Suerte, 5 Cofre, 6 Impuesto
 loc,name,tipo,arg1,arg2s
 0,salida,0,200 
-1,marron,1,60,4
-2,cofre,5,
-3,marron1,1,60,4
-4,impuestos,6,200
-5,ferrocarril,3,200
-6,blanco,1,100,6
-7,interrogante,4,
-8,blanco1,1,100,6
-9,blanco2,1,120,8
+1,Adipose,1,60,4,marron
+2,U.N.I.T,5,
+3,Autons,1,60,4,marron
+4,Tardis Repair,6,200
+5,Platform One,3,200
+6,The Slitheen,1,100,6,celeste
+7,suerte,4,
+8,Empress of the Racnoss,1,100,6,celeste
+9,Ice Warriors,1,120,8,celeste
 10,carcel,0,
-11,magenta,1,140,10
-12,electric_company,2,150
-13,magenta1,1,140,10
-14,magenta2,1,160,12
-15,ferrocarril1,3,200
-16,naranja,1,180,14
-17,cofre1,5,
-18,naranja1,1,180,14
-19,naranja2,1,200,16
+11,Ood,1,140,10,magenta
+12,Eye of Harmony,2,150
+13,Judoon,1,140,10,magenta
+14,The Teller,1,160,12,magenta
+15,Titanic,3,200
+16,Zygons,1,180,14,naranja
+17,U.N.I.T.,5,
+18,Silurians,1,180,14,naranja
+19,Sontaras,1,200,16,naranja
 20,free_parking,0,
-21,rojo,1,220,18
-22,interrogante1,4,
-23,rojo1,1,220,18
-24,rojo2,1,240,20
-25,ferrocarril2,3,200
-26,amarillo,1,260,22
-27,amarillo1,1,260,22
-28,water_works,2,150
-29,amarillo2,1,280,24
+21,Lady Cassandra,1,220,18,rojo
+22,suerte,4,
+23,Madame Kovarian,1,220,18,rojo
+24,The Whisper Men,1,240,20,rojo
+25,Starship UK,3,200
+26,The Foretold,1,260,22,amarillo
+27,Vashta Nerada,1,260,22,amarillo
+28,Toorchwood,2,150
+29,Davros,1,280,24,amarillo
 30,a_la_carcel,0,
-31,verde,1,300,26
-32,verde1,1,300,26
-33,cofre2,5,
-34,verde2,1,320,28
-35,ferrocarril3,3,200
-36,interrogante2,4,
-37,azul,1,350,35
-38,luxuri_tax,6,100
-39,azul1,1,400,50
+31,The Weeping Angels,1,300,26,verde
+32,The Silence,1,300,26,verde
+33,U.N.I.T.,5,
+34,Missy,1,320,28,verde
+35,The Valiant,3,200
+36,suerte,4,
+37,Cybermen,1,350,35,azul
+38,Sonic Screwdriver Repair,6,100
+39,Daleks,1,400,50,azul

@@ -55,7 +55,7 @@ class Game:
         """
         print(player.name," ha sido enviado a la cárcel!")
         player.on_jail = True
-        while player.pos.loc !=4:
+        while player.pos.loc !=30:
             player.pos = player.pos.next
 
     def pagar_servicio(self,player:Player,target):
@@ -105,6 +105,7 @@ class Game:
             return int(data[2]),int(data[3])
         else:
             return int(data[2]),None
+            
     def jugar_cofre(self,tipo, cant, player:Player):
         """
         Realiza acciones dependiendo del tipo

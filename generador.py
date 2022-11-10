@@ -10,7 +10,7 @@ while line != "":
     #print(data[2])
     if data[2] == "0":
         #print("casilla corresponde a Nodo\n")
-        P = Nodo(data[0],data[1])
+        P = Nodo(int(data[0]),data[1])
         tablero.add_node2(P)
     elif data[2] == "1":
         #print("casilla corresponde a propiedad\n")
@@ -34,6 +34,6 @@ while line != "":
         tablero.add_node2(P)
     elif data[2] == "6":
         #print("casilla corresponde a impuesto\n")
-        P = Impuesto(int(data[0]),data[1],data[3])
+        P = Impuesto(int(data[0]),data[1],int(data[3]))
         tablero.add_node2(P)
     line = casillas.readline()
