@@ -14,7 +14,7 @@ while line != "":
         tablero.add_node2(P)
     elif data[2] == "1":
         #print("casilla corresponde a propiedad\n")
-        P = Propiedad(int(data[0]),data[1],int(data[3]),int(data[4]),"none")
+        P = Propiedad(int(data[0]),data[1],int(data[3]),int(data[4]),data[5])
         tablero.add_node2(P)
     elif data[2] == "2":
         #print("casilla corresponde a servicio\n")
