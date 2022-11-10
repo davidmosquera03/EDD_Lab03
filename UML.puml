@@ -2,14 +2,16 @@
 left to right direction
 class Inventory{
 +sellable:int
++values:str
++change_rent()
 }
 
 class Player{
-+name
++name:str
 +inventory:Inventory
 +pos:Nodo
-+balance
-+double_count
++balance:int
++double_count:int
 +on_jail:bool
 +times_on_jail:int
 +withdraw()
@@ -19,6 +21,7 @@ class Player{
 +throw_die()
 +jugar_turno()
 +jugar_carcel()
++check_color()
 }
 class dict{
 }
@@ -34,20 +37,21 @@ class Game{
 }
 
 class Board{
-+PTR
-+ULT
++PTR:Nodo
++ULT:Nodo
 +addnode()
 }
 
 class Nodo{
-+loc
-+name
-+prev
-+next
++loc:int
++name:str
++prev:Nodo
++next:Nodo
 }
 class Propiedad{
 +costo
 +renta
++color
 +owner
 }
 class Servicio{

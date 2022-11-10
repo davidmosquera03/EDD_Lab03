@@ -15,6 +15,9 @@ class Inventory(dict):
         self["ferrocarriles"] =[]
         self["servicios"] = []
         self["pases"] = 0
+        self["colores"] = {"marron":0,"celeste":0,"magenta":0,"naranja":0,
+                        "rojo":0,"amarillo":0,"verde":0,"azul":0,}
+
     @property
     def sellable(self):
         """
@@ -28,6 +31,38 @@ class Inventory(dict):
             elif isinstance(value,int):
                 count += value
         return count
+
+    @property
+    def valores(self):
+        """
+        Retorna cada clave y valor del
+        inventorio
+        """
+        s = ""
+        for key,value in self.items():
+            s+= str(key)+str(value)
+            s+="\n"
+        return s
+
+    def change_rent(self,color,op:int):
+        """
+        Aumenta o Reduce la renta de propiedades
+        de un color
+
+        + color: color de propiedades a alterar
+        + op: 1 para aumentar, 2 reducir
+        """
+        for property in self["propiedades"]:
+            property:Propiedad
+            if property.color == color:
+                if op ==1:
+                    print(f"Ha completado el color {color}")
+                    property.renta *= 2
+                elif op == 0:
+                    print(f"Ya no completa el color {color}")
+                    property.renta /= 2
+            print(f"nueva renta de {property.name} es {property.renta}")
+
 class Player:
     def __init__(self,name:str) -> None:
         """
@@ -63,12 +98,36 @@ class Player:
         self.balance+=amount
         print(self.name," tiene ",self.balance)
 
+    def check_color(self,color,op):
+        """
+        Evalua cambios en cantidad de colores 
+        tras venta o compra
+
+        +color: color a evaluar
+        +op: 1 para compras, 2 para ventas
+        """
+        if op == 1:
+            self.inventory["colores"][color] += 1
+            x = self.inventory["colores"][color]
+            if (color == "marron" or color == "azul") and x==2:
+                self.inventory.change_rent(color,1)
+            elif x == 3:
+                self.inventory.change_rent(color,1)
+        elif op == 2:
+            ant = self.inventory["colores"][color]
+            if (color == "marron" or color == "azul") and ant==2:
+                self.inventory.change_rent(color,2)
+            elif ant == 3:
+                self.inventory.change_rent(color,2)
+            self.inventory["colores"][color] -= 1
+
     def buy(self,sitio:Nodo):
         """
         Comprar Propiedad/Servicio/Ferrocarril
         """
         if isinstance(sitio,Propiedad):
             self.inventory["propiedades"].append(sitio)
+            self.check_color(sitio.color,1)
         elif isinstance(sitio,Servicio):
             self.inventory["servicios"].append(sitio)
         elif isinstance(sitio,Ferrocarril):
@@ -86,6 +145,8 @@ class Player:
         for value in self.inventory[key]:
             value:Nodo
             if value.name == name:
+                if isinstance(value,Propiedad):
+                    self.check_color(value.color,2)
                 found = True
                 self.deposit(value.costo)
                 value.owner = None
@@ -229,6 +290,5 @@ class Player:
                 self.times_on_jail += 1
             print("lleva ",self.times_on_jail," veces en la cárcel")
             self.double_count = 0
-    
 
 

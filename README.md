@@ -1,15 +1,20 @@
 ![Logo](img//monopoly.png)
-Version 0.5 of the laboratory 3, made in Python. By David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
+Version 0.8 of the laboratory 3, made in Python.
+
+**By TIME LORDS**:watch:: David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
 
 ## Roadmap
 - [X] Archivos de casillas, cofre y arca
-- [X]  Terminar casillas.txt
-- [X]  Implementar generador de tablero
+- [X] Terminar casillas.txt
+- [X] Implementar generador de tablero
 - [X] Añadir Clase Player
 - [X] Añadir Clase Game
+- [X] Diseñar lógica
 - [X] Implementar code_to_run
-- [] Diseño Visual del tablero
-- [] Reorganizar nombres
+- [X] Diseño Visual del tablero
+- [X] Reorganizar nombres
+- [X] Agregar aumento de renta por colores
+- [] Interfaz Gráfica
  
 ## Minimum requirements
 - [X] Add class diagram
@@ -23,9 +28,16 @@ Version 0.5 of the laboratory 3, made in Python. By David Hernandez, María Sol�
 - [X] Implement property selling
 - [X] Implement rent payments
 - [] Implement 8 currencies
-- [] Other stuff
+- [X] Roll dice to set turns
+## Aditional Functions
+- [X] Railroads
+- [X] Services
+- [] Sound effects
+- [X] Railroad,Service,Pass selling
+- [X] Color improvement of rent
 
-
+## Tablero
+![Tablero](img\\tablero.jpeg)
 
 ## Diagrama UML
-![UML](img//Class_Diagram.png)
+![CLASS_UML](img//CLASS_UML.png)

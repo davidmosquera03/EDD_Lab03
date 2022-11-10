@@ -37,3 +37,20 @@ while line != "":
         P = Impuesto(int(data[0]),data[1],int(data[3]))
         tablero.add_node2(P)
     line = casillas.readline()
+
+def sort(list):
+    """
+    Ordena resultados de lanzamientos de dado
+    de mayor a menor
+    """ 
+    for i in range(0,len(list)-1):  
+        for j in range(len(list)-1):  
+            if(list[j][0]<list[j+1][0]):  
+                temp = list[j]  
+                list[j] = list[j+1]  
+                list[j+1] = temp  
+    return list  
+
+def add_by_turns(list,game):
+    for sublist in list:
+        game.add_player(sublist[1])

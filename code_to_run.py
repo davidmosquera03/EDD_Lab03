@@ -1,10 +1,30 @@
-from generador import tablero
+from generador import tablero,sort,add_by_turns
 from Game import Game,Player
 from Nodo import Propiedad,Nodo,Servicio,Ferrocarril,Cofre,Suerte,Impuesto
+from random import randint
 
 g = Game(tablero)
-g.add_player("dave")
-g.add_player("Nico")
+print("Inserte numero de jugadores (2 a 4)")
+num = input()
+while num not in ["2","3","4"]:
+    print("Opción no válida")
+    num = input()
+
+turns = []
+for i in range(int(num)):
+    print(f"Inserte su nombre jugador #{i+1}")
+    name = input()
+    print("Presiona Enter para tirar el dado")
+    on = input()
+    while on!="":
+        on = input()
+    die = randint(1,12)
+    print(f"ha sacado {die}")
+    turns.append([die,name])
+
+turns = sort(turns)
+print(turns)
+add_by_turns(turns,g)
 
 def show_menu(player:Player):
     print(player.name)
@@ -16,7 +36,7 @@ def show_menu(player:Player):
             print("no valido")
             sw = input()
         if sw=="1":
-            print(player.inventory)
+            print(player.inventory.valores)
         elif sw=="2":
             player.sell_menu()
         elif sw=="3":
@@ -48,7 +68,7 @@ while len(g.players)>1:
 
                 if isinstance(sitio,Propiedad): # Propiedad
                     print("Costo ",sitio.costo,"Renta ",sitio.renta
-                            ," Dueño ",sitio.owner)
+                            ," Dueño ",sitio.owner,"color ",sitio.color)
                     if sitio.owner is None:
                         print("comprar 1 si 2 no")
                         op = input()

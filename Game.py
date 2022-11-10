@@ -128,8 +128,9 @@ class Game:
 
         elif tipo ==1:   # x pasos
             if goal<0:  # hacia atrás
-                for i in range(goal):
+                for i in range(goal*-1):
                     player.pos = player.pos.prev
+                print("Nueva Posicion ",player.pos," Loc ",player.pos.loc)
             else:   # hacia adelante
                 for i in range(goal):
                     player.pos = player.pos.next

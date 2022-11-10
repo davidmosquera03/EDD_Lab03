@@ -1,42 +1,42 @@
 tipo 0 Nodo, 1 Propiedad, 2 Servicio, 3 Ferrocarril, 4 Suerte, 5 Cofre, 6 Impuesto
 loc,name,tipo,arg1,arg2s
 0,salida,0,200 
-1,Adipose,1,60,4,marron
+1,Adipose,1,60,4,marron,
 2,U.N.I.T,5,
-3,Autons,1,60,4,marron
+3,Autons,1,60,4,marron,
 4,Tardis Repair,6,200
 5,Platform One,3,200
-6,The Slitheen,1,100,6,celeste
+6,The Slitheen,1,100,6,celeste,
 7,suerte,4,
-8,Empress of the Racnoss,1,100,6,celeste
-9,Ice Warriors,1,120,8,celeste
+8,Empress of the Racnoss,1,100,6,celeste,
+9,Ice Warriors,1,120,8,celeste,
 10,carcel,0,
-11,Ood,1,140,10,magenta
+11,Ood,1,140,10,magenta,
 12,Eye of Harmony,2,150
-13,Judoon,1,140,10,magenta
-14,The Teller,1,160,12,magenta
+13,Judoon,1,140,10,magenta,
+14,The Teller,1,160,12,magenta,
 15,Titanic,3,200
-16,Zygons,1,180,14,naranja
+16,Zygons,1,180,14,naranja,
 17,U.N.I.T.,5,
-18,Silurians,1,180,14,naranja
-19,Sontaras,1,200,16,naranja
+18,Silurians,1,180,14,naranja,
+19,Sontaras,1,200,16,naranja,
 20,free_parking,0,
-21,Lady Cassandra,1,220,18,rojo
+21,Lady Cassandra,1,220,18,rojo,
 22,suerte,4,
-23,Madame Kovarian,1,220,18,rojo
-24,The Whisper Men,1,240,20,rojo
+23,Madame Kovarian,1,220,18,rojo,
+24,The Whisper Men,1,240,20,rojo,
 25,Starship UK,3,200
-26,The Foretold,1,260,22,amarillo
-27,Vashta Nerada,1,260,22,amarillo
+26,The Foretold,1,260,22,amarillo,
+27,Vashta Nerada,1,260,22,amarillo,
 28,Toorchwood,2,150
-29,Davros,1,280,24,amarillo
+29,Davros,1,280,24,amarillo,
 30,a_la_carcel,0,
-31,The Weeping Angels,1,300,26,verde
-32,The Silence,1,300,26,verde
+31,The Weeping Angels,1,300,26,verde,
+32,The Silence,1,300,26,verde,
 33,U.N.I.T.,5,
-34,Missy,1,320,28,verde
+34,Missy,1,320,28,verde,
 35,The Valiant,3,200
 36,suerte,4,
-37,Cybermen,1,350,35,azul
+37,Cybermen,1,350,35,azul,
 38,Sonic Screwdriver Repair,6,100
-39,Daleks,1,400,50,azul
+39,Daleks,1,400,50,azul,
