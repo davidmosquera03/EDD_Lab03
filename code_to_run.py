@@ -2,24 +2,33 @@ from generador import tablero,sort,add_by_turns
 from Game import Game,Player
 from Nodo import Propiedad,Nodo,Servicio,Ferrocarril,Cofre,Suerte,Impuesto
 from random import randint
+from sound import theme,die_sound
 
+theme()
 g = Game(tablero)
 print("Inserte numero de jugadores (2 a 4)")
 num = input()
 while num not in ["2","3","4"]:
     print("Opción no válida")
     num = input()
-
+nombres_usados = []
 turns = []
 for i in range(int(num)):
     print(f"Inserte su nombre jugador #{i+1}")
     name = input()
+    while name=="":
+        print("Nombre es necesario")
+        name = input()
     print("Presiona Enter para tirar el dado")
     on = input()
     while on!="":
         on = input()
+    die_sound()
     die = randint(1,12)
     print(f"ha sacado {die}")
+    if name in nombres_usados:
+        name+=str(i)
+    nombres_usados.append(name)
     turns.append([die,name])
 
 turns = sort(turns)

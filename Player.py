@@ -1,6 +1,6 @@
 from Nodo import Nodo,Propiedad,Servicio,Ferrocarril
 from random import randint
-
+from sound import die_sound,buy_sound
 class Inventory(dict):
     def __init__(self):
         """
@@ -17,7 +17,7 @@ class Inventory(dict):
         self["pases"] = 0
         self["colores"] = {"marron":0,"celeste":0,"magenta":0,"naranja":0,
                         "rojo":0,"amarillo":0,"verde":0,"azul":0,}
-
+    
     @property
     def sellable(self):
         """
@@ -132,7 +132,7 @@ class Player:
             self.inventory["servicios"].append(sitio)
         elif isinstance(sitio,Ferrocarril):
             self.inventory["ferrocarriles"].append(sitio)
-
+        buy_sound()
         self.withdraw(sitio.costo)
         sitio.owner = self.name
         print(self.inventory)
@@ -182,6 +182,7 @@ class Player:
                 print(self.inventory["ferrocarriles"])
                 print("Seleccione ferrocarril a vender")
                 s = input()
+                self.sell("ferrocarriles",s)
             else:
                 print("No tiene ferrocarriles")
 
@@ -227,6 +228,7 @@ class Player:
         + amount: suma de los dos dados
         + again: 0 si no sacó par, 1 si obtuvo
         """
+        die_sound()
         again = 0
         die1 = randint(1,6)
         die2 = randint(1,6)

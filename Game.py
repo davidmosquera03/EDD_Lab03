@@ -2,7 +2,7 @@ from Player import Player
 from Board import Board
 from Nodo import Ferrocarril,Servicio
 from random import randint
-
+from sound import jail_sound
 class Game:
     def __init__(self,board:Board) -> None:
         """
@@ -53,6 +53,7 @@ class Game:
         """
         Ubica a un jugador en la cárcel
         """
+        jail_sound()
         print(player.name," ha sido enviado a la cárcel!")
         player.on_jail = True
         while player.pos.loc !=30:
