@@ -35,30 +35,45 @@ three = (680, 700)
 four = (680, 670)
 
 framerate = 60
-fondo = pg.image.load("tablero.png")
+fondo = pg.image.load("img\\tablero.jpeg")
 fondo = transform.scale(fondo, (740,740))
 myfont = font.SysFont("Calibri", 30)
 timer = pg.time.Clock()
 die_button = Rect(800,100,150,50)
 sell_button = Rect(800,200,150,50)
-posiciones = {}
+
 x = 710
+
+posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
+            4: (430, 699), 5: (372, 693), 6: (305, 694), 7: (246, 689), 8: (188, 691),
+            9: (122, 691), 10: (47, 683), 11: (43, 613), 12: (29, 554), 13: (38, 492),
+            14: (39, 431), 15: (32, 372), 16: (33, 311), 17: (38, 246), 18: (37, 187),
+            19: (41, 129), 20: (41, 50), 21: (133, 52), 22: (190, 53), 23: (236, 51), 
+            24: (306, 57), 25: (370, 61), 26: (428, 55), 27: (481, 54), 28: (549, 57), 
+            29: (601, 54), 30: (687, 64), 31: (687, 126), 32: (697, 181), 33: (689, 247),
+            34: (694, 311), 35: (691, 374), 36: (697, 423), 37: (695, 492), 38: (697, 550), 
+            39: (703, 613)}
+i = 0
+
+jugadores = {orange:one,white:two,pink:three,blue:four}
+
 while True:
     timer.tick(framerate)
 
-
+    
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
+            
         if event.type==pg.MOUSEBUTTONDOWN and BUTTON_LEFT:
-            # print(mouse.get_pos())
-        
             
             if die_button.collidepoint(mouse.get_pos()):
                 draw.rect(ventana, (237, 128, 19), die_button, 0)
-                x -= 20
-                one = (x,700)
+                i += 1
+                if i==len(posiciones):
+                    i=0
+                one = posiciones[i]
                 #print("dado lanzado")
             if sell_button.collidepoint(mouse.get_pos()):
                 draw.rect(ventana, (237, 128, 19), sell_button, 0)
@@ -75,3 +90,4 @@ while True:
     draw_player(ventana, blue, three)
     draw_player(ventana, orange, four)
     pg.display.flip()
+    
