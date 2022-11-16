@@ -40,7 +40,8 @@ while line != "":
 
 def sort(list):
     """
-    Ordena resultados de lanzamientos de dado
+    Ordenamiento burbuja de resultados 
+    de lanzamientos de dado
     de mayor a menor
     """ 
     for i in range(0,len(list)-1):  
@@ -51,6 +52,14 @@ def sort(list):
                 list[j+1] = temp  
     return list  
 
-def add_by_turns(list,game):
+def add_by_turns(list:list,game):
+    """
+    Añade jugadores de una lista ordenada 
+    a un juego
+
+    + list: lista de listas con resultado
+    de dados y nombre de jugador
+    + game: Game donde se crearán los jugadores
+    """
     for sublist in list:
         game.add_player(sublist[1])

@@ -1,5 +1,5 @@
 ![Logo](img//monopoly.png)
-Version 0.8 of the laboratory 3, made in Python.
+Version 0.85 of the laboratory 3, made in Python.
 
 **By TIME LORDS**:watch:: David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
 

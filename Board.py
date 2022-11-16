@@ -28,22 +28,6 @@ class Board:
             self.ULT = node
             self.ULT.next = self.PTR
         self.PTR.prev = self.ULT
-  
-    def add_property(self,loc:int, name:str, value:int,hipoteca:int,color:str) -> None:
-        """
-        Añade un nodo como ULT
-        """
-        Q = Propiedad(loc, name, value, hipoteca,color)
-        if self.PTR ==None:
-            self.PTR = Q
-            self.ULT = Q
-            self.PTR.next = Q
-        else:
-            self.ULT.next = Q
-            Q.prev = self.ULT
-            self.ULT = Q
-            self.ULT.next = self.PTR
-        self.PTR.prev = self.ULT
 
     def recorrer_PTR(self):
         """

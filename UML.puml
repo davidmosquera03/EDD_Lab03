@@ -63,9 +63,9 @@ class Ferrocarril{
 +owner
 }
 Player*--Inventory
-Game o--Player
+Game *--Player
 Game o-- Board
-Board *-- Nodo
+Board o-- Nodo
 Inventory <|-- dict
 Nodo <|-- Propiedad
 Nodo <|-- Ferrocarril
