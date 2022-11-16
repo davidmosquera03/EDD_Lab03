@@ -36,6 +36,8 @@ four = (680, 670)
 
 framerate = 60
 fondo = pg.image.load("img\\tablero.jpeg")
+layer = pg.image.load("img\\layer.jpg")
+layer = transform.scale(layer,(260,740))
 fondo = transform.scale(fondo, (740,740))
 myfont = font.SysFont("Calibri", 30)
 timer = pg.time.Clock()
@@ -55,7 +57,7 @@ posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
             39: (703, 613)}
 i = 0
 
-jugadores = {orange:one,white:two,pink:three,blue:four}
+jugadores = {pink:one,black:two,blue:three,orange:four}
 
 while True:
     timer.tick(framerate)
@@ -83,6 +85,7 @@ while True:
 
 
     ventana.blit(fondo, (0,0))
+    ventana.blit(layer,(740,0))
     draw_button(ventana, die_button, "lanzar dado")
     draw_button(ventana, sell_button, "vender")
     draw_player(ventana, pink, one)
