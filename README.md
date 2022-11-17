@@ -37,7 +37,7 @@ Version 0.85 of the laboratory 3, made in Python.
 - [X] Color improvement of rent
 
 ## Tablero
-![Tablero](img\\tablero.jpeg)
+![Tablero](img//tablero.jpeg)
 
 ## Diagrama UML
 ![CLASS_UML](img//CLASS_UML.png)

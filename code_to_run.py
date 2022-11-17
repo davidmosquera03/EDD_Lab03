@@ -46,6 +46,7 @@ while len(g.players)>1:
             if not player.on_jail:
                 print("Turno de ",player.name,"ubicado en: ",player.pos) #Nombre y casilla
                 repeat = player.jugar_turno()
+                # mostrar(die,player)
                 sitio = player.pos
                 
                 if isinstance(sitio,Suerte):

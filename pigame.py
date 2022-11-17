@@ -24,6 +24,7 @@ def draw_button(ventana, boton, palabra):
     texto = myfont.render(palabra, True, (255, 255, 255))
     ventana.blit(texto, (boton.x+(boton.width-texto.get_width())/2, 
                         boton.y+(boton.height-texto.get_height())/2))
+
 def draw_player(ventana, color, number):
     draw.circle(ventana, color, number , radius=12)
 
@@ -83,7 +84,8 @@ while True:
                     time.delay(500)
                     draw_player(ventana, pink, one)
                     pg.display.flip()
-                #print("dado lanzado")
+               
+
             if sell_button.collidepoint(mouse.get_pos()):
                 draw.rect(ventana, (237, 128, 19), sell_button, 0)
                 print("vendido")
