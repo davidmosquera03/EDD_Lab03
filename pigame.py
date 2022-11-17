@@ -1,7 +1,7 @@
 from pygame import *
 import pygame as pg
 import sys
-import random
+from random import randint
 
 pg.init()
 
@@ -72,10 +72,17 @@ while True:
             
             if die_button.collidepoint(mouse.get_pos()):
                 draw.rect(ventana, (237, 128, 19), die_button, 0)
-                i += 1
-                if i==len(posiciones):
-                    i=0
-                one = posiciones[i]
+                die = randint(1,12)
+                print(die)
+                for x in range(die):
+                    ventana.blit(fondo,(0,0))
+                    i += 1
+                    if i==len(posiciones):
+                        i=0
+                    one = posiciones[i]
+                    time.delay(500)
+                    draw_player(ventana, pink, one)
+                    pg.display.flip()
                 #print("dado lanzado")
             if sell_button.collidepoint(mouse.get_pos()):
                 draw.rect(ventana, (237, 128, 19), sell_button, 0)
