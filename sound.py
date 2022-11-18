@@ -14,7 +14,7 @@ def die_sound():
     die = mixer.Sound("img\\tirar_dado.wav")
     die.set_volume(0.4)
     die.play()
-    time.sleep(1.5)
+    time.sleep(1)
 
 def buy_sound():
     die = mixer.Sound("img\\comprar.wav")

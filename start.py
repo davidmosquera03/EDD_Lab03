@@ -1,8 +1,7 @@
 from tkinter import *
 from sound import die_sound
 from random import randint
-from generador import sort    
-
+from generador import sort  
 
 i = 0
 def asignar():
@@ -64,10 +63,103 @@ def asignar():
 
     return sort(turns)
 
+class Receiver:
+    
+    def __init__(self) -> None:
+        """
+        Clase para guardar variables de ventanas 
+        de tkinter
 
-def menu():
-    root = Tk()
-    root.geometry("500x250+550+100")
-    root.resizable(False, False)
+        + answer = resultado
+        """
+        self.answer = 0
 
-    root.mainloop()
+    def menu_compra(self,sitio,player):
+        root = Tk()
+        root.geometry("500x250+550+100")
+        root.resizable(False, False)
+        root.overrideredirect(True)
+
+        def buy():
+            sig.destroy()
+            comprar.destroy()
+            label.config(text=f"Lo ha comprado por {sitio.costo}")
+            label1.config(text=f"Costo:{sitio.costo} Dueño:{player.name}")
+            self.answer = 1
+            root.after(3000,continuar)
+            
+
+        def continuar():
+            root.destroy()
+
+        label = Label(root,text=f"Ha atterizado en {sitio.name}",
+                        font=("Times,20"),fg="red")
+        label.place(x=0,y=5) # Etiqueta principal
+        
+        label1 = Label(root,text=f"Costo:{sitio.costo} Dueño:{sitio.owner}",
+                        font=("Times,20"),fg="blue")
+        label1.place(x=0,y=50) # Etiqueta principal
+
+
+        comprar = Button(root,text="Comprar",font=("Times",12),command=buy)
+        comprar.place(x=100,y=125)  #Insertar nombre
+
+        sig = Button(root,text="No comprar ",font=("Times",12),command=continuar)
+        sig.place(x=200,y=125)    # Empezar juego
+
+        root.mainloop()
+    
+    def menu_basico(self,player):
+        root = Tk()
+        root.geometry("850x250+550+100")
+        root.resizable(False, False)
+
+        def mostrar():
+            prop = Label(    root,text=f"Propiedades: {player.inventory['ferrocarriles']}",
+            font=("Times,15"),fg="blue")
+            prop.place(x=0,y=0)
+
+            serv = Label(root,text =f"Servicios: player.inventory['servicios']",
+            font=("Times,15"),fg="blue")
+            serv.place(x=0,y=30)
+
+            ferr = Label(root,text = f"Ferrocarriles: player.inventory['ferrocarriles']",
+            font=("Times,15"),fg="blue")
+            ferr.place(x=0,y=60) 
+
+            pas = Label(root,text = f"Pases {player.inventory['pases']}",
+            font=("Times,15"),fg="blue")
+            pas.place(x=0,y=80)
+
+        def vender():
+            x = entry.get()
+            #player.sell()
+
+        def seguir():
+            root.destroy()
+
+        vend = Label(root,text = f"Vendibles: {player.inventory.sellable}",
+        font=("Times,15"),fg="blue")
+        vend.place(x=650,y=200)
+
+        btn = Button(root,text="ver inventorio",font=("Times",12),command=mostrar)
+        btn.place(x=0,y=200)  
+
+        btn2 = Button(root,text="vender",font=("Times",12),command=vender)
+        btn2.place(x=150,y=200) 
+
+        btn3 = Button(root,text="Jugar",font=("Times",12),command=seguir)
+        btn3.place(x=300,y=200) 
+
+        entry = Entry(root,font=("Times",12),justify="center")
+        entry.place(x=450,y=200)
+
+        root.mainloop()
+
+
+from Player import Player
+
+a = Player("dave")
+x = Receiver()
+
+x.menu_basico(a)

@@ -3,6 +3,7 @@ import pygame as pg
 import sys
 from random import randint
 
+
 pg.init()
 
 ventana = pg.display.set_mode((1000, 740))
@@ -16,36 +17,67 @@ pink = (255, 112, 193)
 blue = (112, 174, 255)
 orange = (255, 114, 48)
 
-def draw_button(ventana, boton, palabra):
-    if boton.collidepoint(mouse.get_pos()):
-        draw.rect(ventana, (237, 128, 19), boton, 0)
-    else:    
-        draw.rect(ventana, (70, 189, 34), boton, 0)
-    texto = myfont.render(palabra, True, (255, 255, 255))
-    ventana.blit(texto, (boton.x+(boton.width-texto.get_width())/2, 
-                        boton.y+(boton.height-texto.get_height())/2))
-
-def draw_player(ventana, color, number):
-    draw.circle(ventana, color, number , radius=12)
-
-#players
-
+#players beginning positions
 one = (710, 700)
 two = (710, 670)
 three = (680, 700)
 four = (680, 670)
 
+
+def draw_button(ventana, boton, palabra):
+    """
+    ventana: superficie donde se dibuja
+    boton: rectangulo con dimensiones 
+    palabra: texto a mostrar
+    """
+    if boton.collidepoint(mouse.get_pos()):
+        draw.rect(ventana, (237, 128, 19), boton, 0)
+        # superficie,(r,g,b),boton,0 rellena
+    else:    
+        draw.rect(ventana, (70, 189, 34), boton, 0)
+    texto = myfont.render(palabra, True, (255, 255, 255))
+    ventana.blit(texto, (boton.x+(boton.width-texto.get_width())/2, 
+                        boton.y+(boton.height-texto.get_height())/2))
+                        # Centra
+
+def draw_player(ventana, color, number):
+    draw.circle(ventana, color, number , radius=12)
+
+
+def draw_label(ventana,texto): #Resultado dado
+    text_surface = myfont.render(texto, False, (100, 24, 45))
+    ventana.blit(text_surface, (800,20))
+
+def draw_name(ventana,texto): #Nombre
+    text_surface = myfont.render(texto, False, (100, 24, 45))
+    ventana.blit(text_surface, (900,20))
+
+
+
+def draw_all():
+    draw_player(ventana, pink, one)
+    draw_player(ventana, black, two)
+    draw_player(ventana, blue, three)
+    draw_player(ventana, orange, four)
+
 framerate = 60
+
 fondo = pg.image.load("img\\tablero.jpeg")
 layer = pg.image.load("img\\layer.jpg")
+
 layer = transform.scale(layer,(260,740))
 fondo = transform.scale(fondo, (740,740))
+
 myfont = font.SysFont("Calibri", 30)
 timer = pg.time.Clock()
+
 die_button = Rect(800,100,150,50)
 sell_button = Rect(800,200,150,50)
 
 x = 710
+
+
+
 
 posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
             4: (430, 699), 5: (372, 693), 6: (305, 694), 7: (246, 689), 8: (188, 691),
@@ -63,7 +95,6 @@ jugadores = {pink:one,black:two,blue:three,orange:four}
 while True:
     timer.tick(framerate)
 
-    
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
@@ -72,7 +103,8 @@ while True:
         if event.type==pg.MOUSEBUTTONDOWN and BUTTON_LEFT:
             
             if die_button.collidepoint(mouse.get_pos()):
-                draw.rect(ventana, (237, 128, 19), die_button, 0)
+                
+                
                 die = randint(1,12)
                 print(die)
                 for x in range(die):
@@ -83,11 +115,14 @@ while True:
                     one = posiciones[i]
                     time.delay(500)
                     draw_player(ventana, pink, one)
+
+                    draw_label(ventana,str(die))
+
                     pg.display.flip()
+                    
                
 
             if sell_button.collidepoint(mouse.get_pos()):
-                draw.rect(ventana, (237, 128, 19), sell_button, 0)
                 print("vendido")
 
 
@@ -95,11 +130,12 @@ while True:
 
     ventana.blit(fondo, (0,0))
     ventana.blit(layer,(740,0))
-    draw_button(ventana, die_button, "lanzar dado")
-    draw_button(ventana, sell_button, "vender")
+    draw_button(ventana,die_button, "lanzar dado")
+    draw_button(ventana,sell_button, "vender")
     draw_player(ventana, pink, one)
     draw_player(ventana, black, two)
     draw_player(ventana, blue, three)
     draw_player(ventana, orange, four)
+    draw_name(ventana,"Carlos")
     pg.display.flip()
     

@@ -2,15 +2,17 @@ from generador import tablero,add_by_turns
 from Game import Game,Player
 from Nodo import Propiedad,Nodo,Servicio,Ferrocarril,Cofre,Suerte,Impuesto
 from sound import theme
-from start import asignar
+from start import asignar,Receiver
 
 
 theme()
 g = Game(tablero)
+data = Receiver()
 
 turns = asignar()
 print(turns)
 add_by_turns(turns,g)
+
 
 
 def show_menu(player:Player):
@@ -29,7 +31,18 @@ def show_menu(player:Player):
         elif sw=="3":
                 on = False
 
+
+
+
+
+def comprar(sitio:Nodo,player:Player):
+    data.menu_compra(sitio,player)
+    if data.answer == 1:
+        player.buy(sitio)
+    data.answer = 0
+
 g.start() # Posiciona en inicio
+
 while len(g.players)>1:
     for  player in g.players.copy().values(): # Por cada jugador
         player:Player
@@ -48,7 +61,9 @@ while len(g.players)>1:
                 repeat = player.jugar_turno()
                 # mostrar(die,player)
                 sitio = player.pos
+
                 
+
                 if isinstance(sitio,Suerte):
                     tipo,goal = g.sacar_carta("suerte.txt")
                     g.jugar_suerte(player,tipo,goal)
@@ -58,14 +73,7 @@ while len(g.players)>1:
                     print("Costo ",sitio.costo,"Renta ",sitio.renta
                             ," Dueño ",sitio.owner,"color ",sitio.color)
                     if sitio.owner is None:
-                        print("comprar 1 si 2 no")
-                        op = input()
-                        while op!="1" and op!="2":
-                            op = input()
-                        if op =="1":
-                            player.buy(sitio)
-                        else:
-                            print("No la ha comprado")
+                        comprar(sitio,player)
                     elif sitio.owner!=player.name:
                         print("debe pagar ",sitio.renta)
                         g.transfer(player.name,sitio.owner,sitio.renta)
@@ -77,20 +85,14 @@ while len(g.players)>1:
                 elif isinstance(sitio,Servicio): #Servicio
                     print("Costo ",sitio.costo," Dueño ",sitio.owner)
                     if sitio.owner is None:
-                        print("comprar 1 si 2 no")
-                        op = int(input())
-                        if op ==1:
-                            player.buy(sitio)
+                        comprar(sitio,player)
                     elif sitio.owner!=player.name:
                         g.pagar_servicio(player,sitio.owner)
                     
                 elif isinstance(sitio,Ferrocarril): # Ferrocarril
                     print("Costo ",sitio.costo," Dueño ",sitio.owner)
                     if sitio.owner is None:
-                        print("comprar 1 si 2 no")
-                        op = int(input())
-                        if op ==1:
-                            player.buy(sitio)
+                        comprar(sitio,player)
                     elif sitio.owner!=player.name:
                         g.pagar_ferrocarril(player,sitio.owner)
 
