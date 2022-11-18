@@ -95,11 +95,11 @@ class Receiver:
             root.destroy()
 
         label = Label(root,text=f"Ha atterizado en {sitio.name}",
-                        font=("Times,20"),fg="red")
+                        font=("Times",20),fg="red")
         label.place(x=0,y=5) # Etiqueta principal
         
         label1 = Label(root,text=f"Costo:{sitio.costo} Dueño:{sitio.owner}",
-                        font=("Times,20"),fg="blue")
+                        font=("Times",20),fg="blue")
         label1.place(x=0,y=50) # Etiqueta principal
 
 
@@ -118,30 +118,30 @@ class Receiver:
 
         def mostrar():
             prop = Label( root,text=f"Propiedades: {player.inventory['propiedades']}",
-            font=("Times,12"),fg="blue")
+            font=("Times",12),fg="blue")
             prop.place(x=0,y=0)
 
             serv = Label(root,text =f"Servicios: {player.inventory['servicios']}",
-            font=("Times,12"),fg="blue")
+            font=("Times",12),fg="blue")
             serv.place(x=0,y=30)
 
             ferr = Label(root,text = f"Ferrocarriles: {player.inventory['ferrocarriles']}",
-            font=("Times,12"),fg="blue")
+            font=("Times",12),fg="blue")
             ferr.place(x=0,y=60) 
 
             pas = Label(root,text = f"Pases {player.inventory['pases']}",
-            font=("Times,12"),fg="blue")
+            font=("Times",12),fg="blue")
             pas.place(x=0,y=90)
 
             colors = Label(root,text = f"Colores {player.inventory.colores}",
-            font=("Times,12"),fg="blue")
+            font=("Times",12),fg="blue")
             colors.place(x=0,y=120)
 
         def seguir():
             root.destroy()
 
         vend = Label(root,text = f"Vendibles: {player.inventory.sellable}",
-        font=("Times,15"),fg="blue")
+        font=("Times",15),fg="blue")
         vend.place(x=650,y=200)
 
         btn = Button(root,text="ver inventorio",font=("Times",12),command=mostrar)
@@ -203,15 +203,15 @@ class Receiver:
         btn3.place(x=210,y=160)
 
         vend = Label(root,text = f"Escriba 1 Propiedades 2 Ferrocarriles 3 Servicios \nen entrada superior",
-        font=("Times,12"),fg="blue")
+        font=("Times",12),fg="blue")
         vend.place(x=0,y=0)
 
         info = Label(root,text = f"Luego el nombre en la otra entrada",
-        font=("Times,12"),fg="blue")
+        font=("Times",12),fg="blue")
         info.place(x=100,y=50)
 
         error = Label(root,text = f"",
-        font=("Times,10"),fg="red")
+        font=("Times",10),fg="red")
         error.place(x=0,y=200)
 
         root.mainloop()
