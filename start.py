@@ -45,7 +45,7 @@ def asignar():
 
 
     label = Label(root,text="Escriba su nombre",
-                    font=("Times,20"),fg="red")
+                    font=("Times",15),fg="red")
     label.place(x=125,y=5) # Etiqueta principal
 
     receiver = Entry(root,font=("Times",15),justify="center")
@@ -58,7 +58,7 @@ def asignar():
     start.place(x=200,y=125)    # Empezar juego
 
     label1 = Label(root,text=f"Jugadores {i}",
-                    font=("Times,10"),fg="red")
+                    font=("Times",10),fg="red")
     label1.place(x=0,y=200) #Número de jugadores
 
     root.mainloop()
