@@ -43,6 +43,9 @@ class Inventory(dict):
             s+= str(key)+str(value)
             s+="\n"
         return s
+    @property
+    def colores(self):
+        return [str(key)+" "+str(value) for key,value in self["colores"].items()]
 
     def change_rent(self,color,op:int):
         """
@@ -153,6 +156,7 @@ class Player:
                 self.inventory[key].remove(value)
         if not found:
             print("No hallado")
+        return found
 
     def sell_menu(self):
         """
@@ -205,6 +209,50 @@ class Player:
             print("No tiene nada que vender")
         else:
             print(self.inventory)
+
+    def tksell_menu(self,op,s):
+        """
+        Menu iterativo para vender 
+        """
+        done = 0
+        if op =="1":
+            if len(self.inventory["propiedades"])>0:
+                print(self.inventory["propiedades"])
+                act = self.sell("propiedades",s)
+                if act:
+                    done = 1
+            else:
+                print("No tiene propiedades")
+
+        elif op =="2":
+            if len(self.inventory["ferrocarriles"])>0:
+                s = input()
+                act = self.sell("ferrocarriles",s)
+                if act:
+                    done = 1
+            else:
+                print("No tiene ferrocarriles")
+
+        elif op=="3":
+            if len(self.inventory["servicios"])>0:
+                print(self.inventory["servicios"])
+                act = self.sell("servicios",s)
+                if act:
+                    done = 1
+            else:
+                print("No tiene servicios")
+        print(self.inventory)
+        return done
+
+    def sell_pass(self):
+        done = 0
+        if self.inventory["pases"]>0:
+                self.deposit(50)
+                self.inventory["pases"] -= 1
+                done = 1
+        else:
+            print("No tiene pases")
+        return done
 
     def broke(self):
         """
@@ -294,3 +342,6 @@ class Player:
             self.double_count = 0
 
 
+a = Player("dave")
+
+print(a.inventory.colores)

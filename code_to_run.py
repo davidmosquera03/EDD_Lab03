@@ -25,9 +25,9 @@ def show_menu(player:Player):
             print("no valido")
             sw = input()
         if sw=="1":
-            print(player.inventory.valores)
+            data.menu_inventorio(player)
         elif sw=="2":
-            player.sell_menu()
+            data.menu_venta(player)
         elif sw=="3":
                 on = False
 

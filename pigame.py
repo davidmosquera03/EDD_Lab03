@@ -2,8 +2,8 @@ from pygame import *
 import pygame as pg
 import sys
 from random import randint
-
-
+from start import Receiver
+from Player import Player
 pg.init()
 
 ventana = pg.display.set_mode((1000, 740))
@@ -73,6 +73,7 @@ timer = pg.time.Clock()
 
 die_button = Rect(800,100,150,50)
 sell_button = Rect(800,200,150,50)
+inv_button = Rect(800,300,150,50)
 
 x = 710
 
@@ -89,8 +90,11 @@ posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
             34: (694, 311), 35: (691, 374), 36: (697, 423), 37: (695, 492), 38: (697, 550), 
             39: (703, 613)}
 i = 0
-
+receiver = Receiver()
 jugadores = {pink:one,black:two,blue:three,orange:four}
+from Nodo import Propiedad
+dave = Player("david")
+dave.buy(Propiedad(0,"Casa",100,20,"rojo"))
 
 while True:
     timer.tick(framerate)
@@ -123,7 +127,10 @@ while True:
                
 
             if sell_button.collidepoint(mouse.get_pos()):
-                print("vendido")
+                receiver.menu_venta(dave)
+
+            if inv_button.collidepoint(mouse.get_pos()):
+                receiver.menu_inventorio(dave)
 
 
 
@@ -131,7 +138,9 @@ while True:
     ventana.blit(fondo, (0,0))
     ventana.blit(layer,(740,0))
     draw_button(ventana,die_button, "lanzar dado")
-    draw_button(ventana,sell_button, "vender")
+    draw_button(ventana,sell_button, "Vender")
+    draw_button(ventana,inv_button,"Inventorio")
+
     draw_player(ventana, pink, one)
     draw_player(ventana, black, two)
     draw_player(ventana, blue, three)
