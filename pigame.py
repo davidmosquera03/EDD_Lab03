@@ -100,6 +100,7 @@ inv_button = Rect(800,300,150,50)
 x = 710
 
 
+    
 
 
 posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
@@ -116,9 +117,33 @@ v = 0
 w = 0
 z = 0
 j = 0
+
 jugadores = {pink:one,black:two,blue:three,orange:four}
 g.start()
 
+def update_place(numero,new):
+    ventana.blit(fondo, (0,0))
+    ventana.blit(layer,(740,0))
+    if numero == 0:
+        global i
+        i = new
+        one = posiciones[i]
+        draw_player(ventana, pink, one)   
+    elif numero == 1:
+        global v
+        v = new
+        two = posiciones[v]
+        draw_player(ventana, black, two)
+    elif numero == 2:
+        global w
+        w = new
+        three = posiciones[w]
+        draw_player(ventana, blue, three)
+    elif numero == 3:
+        global z
+        z = new
+        four = posiciones[z]
+        draw_player(ventana, orange, four)
 
 # theme()
 while True:
@@ -134,7 +159,10 @@ while True:
             if die_button.collidepoint(mouse.get_pos()):
                 
                 
-                
+                if player.on_jail:
+                    print("Turno en carcel de ",k.name,"(encarcelado)")
+                    player.jugar_carcel()
+                    j += 1
 
                 if not k.on_jail:
                     print("Turno de ",k.name,"ubicado en: ",k.pos) #Nombre y casilla
@@ -178,17 +206,21 @@ while True:
                             draw_player(ventana, orange, four)
                         draw_label(ventana,str(amount))
                         pg.display.flip()
-                    if repeat == 0:
+                    if repeat == 0 or k.on_jail:
                         j += 1
-                    
+                        
                     if j == len(g.players):
                         j = 0
-                    sitio = k.pos
+                    sitio = k.pos 
 
                     if isinstance(sitio,Suerte):
                         tipo,goal = g.sacar_carta("suerte.txt")
-                        g.jugar_suerte(k,tipo,goal)
+                        res = g.jugar_suerte(k,tipo,goal)
                         sitio = k.pos
+                        print(f"RES {res}")
+                        if res !=None:
+                            update_place(numero,res)
+                        pg.display.flip()    
 
                     if isinstance(sitio,Propiedad): # Propiedad
                         print("Costo ",sitio.costo,"Renta ",sitio.renta
@@ -211,24 +243,31 @@ while True:
                     elif isinstance(sitio,Ferrocarril): # Ferrocarril
                         print("Costo ",sitio.costo," Dueño ",sitio.owner)
                         if sitio.owner is None:
-                            comprar(sitio,player)
-                        elif sitio.owner!=player.name:
-                            g.pagar_ferrocarril(player,sitio.owner)
+                            comprar(sitio,k)
+                        elif sitio.owner!=k.name:
+                            g.pagar_ferrocarril(k,sitio.owner)
                         
                     elif isinstance(sitio,Cofre):
                         tipo,cant = g.sacar_carta("cofre.txt")
-                        g.jugar_cofre(tipo,cant,player)
+                        g.jugar_cofre(tipo,cant,k)
 
                     elif isinstance(sitio,Impuesto):
                         print("Debe pagar ",sitio.pago)
-                        player.withdraw(sitio.pago)
+                        k.withdraw(sitio.pago)
                     
                     elif isinstance(sitio,Nodo):
                         print("sitio es",sitio," loc ",sitio.loc)
                         if sitio.loc==30:
                             print("A la carcel!")
-                            g.imprison(player)  # Si Nodo es vayase a la carcel
-                            turnos = 0
+                            g.imprison(k)  # Si Nodo es vayase a la carcel
+                            update_place(numero,10)
+                            print("i es ",i)
+                            pg.display.flip() 
+
+                    
+                     
+                            
+                            
 
             if sell_button.collidepoint(mouse.get_pos()):
                 data.menu_venta(k)

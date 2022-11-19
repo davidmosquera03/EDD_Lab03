@@ -123,10 +123,11 @@ class Game:
 
     def jugar_suerte(self,player:Player,tipo,goal=None):
         print("Tipo ",tipo,"Goal ",goal)
+
+        #tipo = 2 # ANDERUNG
         if tipo == 0: # A sitio especifico
             while player.pos.loc != goal:
                 player.pos = player.pos.next
-
         elif tipo ==1:   # x pasos
             if goal<0:  # hacia atrás
                 for i in range(goal*-1):
@@ -151,6 +152,12 @@ class Game:
             while not isinstance(player.pos,Servicio): 
                 player.pos = player.pos.next
 
+        if tipo!=3 and tipo!=2:
+            return player.pos.loc
+        elif tipo==2:
+            return 10
+        else:
+            return None
 
     def all_pay_one(self,amount,receiver:Player):
         """
