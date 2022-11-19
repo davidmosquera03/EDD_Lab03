@@ -213,6 +213,9 @@ class Player:
     def tksell_menu(self,op,s):
         """
         Menu iterativo para vender 
+
+        + op: tipo de elemento
+        + s: nombre del elemento
         """
         done = 0
         if op =="1":
@@ -340,7 +343,3 @@ class Player:
             print("lleva ",self.times_on_jail," veces en la cárcel")
             self.double_count = 0
 
-
-a = Player("dave")
-
-print(a.inventory.colores)
