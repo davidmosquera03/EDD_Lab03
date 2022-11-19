@@ -33,11 +33,9 @@ class Game:
         + target: recibe el dinero
         + amount: cantidad de dinero 
         """
-        da = self.players[origin]
-        recibe: self.players[amount]
-        da.withdraw(amount)
-        recibe[target].deposit(amount)  
-        notificar(f"")
+        self.players[origin].withdraw(amount)
+        self.players[target].deposit(amount) 
+        
 
     def add_player(self,name):
         """

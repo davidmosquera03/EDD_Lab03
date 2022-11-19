@@ -146,7 +146,7 @@ def update_place(numero,new):
         four = posiciones[z]
         draw_player(ventana, orange, four)
 
-# theme()
+theme()
 while True:
     timer.tick(framerate)
 
@@ -293,10 +293,14 @@ while True:
     draw_button(ventana,die_button, "lanzar dado")
     draw_button(ventana,sell_button, "Vender")
     draw_button(ventana,inv_button,"Inventorio")
-    draw_player(ventana, pink, one)  
-    draw_player(ventana, black, two)
-    draw_player(ventana, blue, three)
-    draw_player(ventana, orange, four)
+    if len(g.players) >= 1:
+        draw_player(ventana, pink, one)
+    if len(g.players) >= 2: 
+        draw_player(ventana, black, two)
+    if len(g.players) >= 3:
+        draw_player(ventana, blue, three)
+    if len(g.players) >= 4:
+        draw_player(ventana, orange, four)
 
     numero = actualplayer.index(actualplayer[j])
     k = g.players.get(actualplayer[j])
