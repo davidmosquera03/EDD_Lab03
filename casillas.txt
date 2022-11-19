@@ -28,7 +28,7 @@ loc,name,tipo,arg1,arg2s
 25,Starship UK,3,200
 26,The Foretold,1,260,22,amarillo,
 27,Vashta Nerada,1,260,22,amarillo,
-28,Toorchwood,2,150
+28,Torchwood,2,150
 29,Davros,1,280,24,amarillo,
 30,a_la_carcel,0,
 31,The Weeping Angels,1,300,26,verde,

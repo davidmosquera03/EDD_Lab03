@@ -226,7 +226,6 @@ class Player:
 
         elif op =="2":
             if len(self.inventory["ferrocarriles"])>0:
-                s = input()
                 act = self.sell("ferrocarriles",s)
                 if act:
                     done = 1

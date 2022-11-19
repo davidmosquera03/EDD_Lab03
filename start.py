@@ -81,7 +81,7 @@ class Receiver:
         root.geometry("500x250+550+100")
         root.resizable(False, False)
         root.overrideredirect(True)
-
+        print("MENU")
         def buy():
             sig.destroy()
             comprar.destroy()
@@ -104,10 +104,10 @@ class Receiver:
 
 
         comprar = Button(root,text="Comprar",font=("Times",12),command=buy)
-        comprar.place(x=100,y=125)  #Insertar nombre
+        comprar.place(x=100,y=125)  
 
         sig = Button(root,text="No comprar ",font=("Times",12),command=continuar)
-        sig.place(x=200,y=125)    # Empezar juego
+        sig.place(x=200,y=125)    
 
         root.mainloop()
     
@@ -161,7 +161,7 @@ class Receiver:
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False) # Dimensiones
-
+        print("MENU")
         def vender():
             type = tipo.get()
             s = entry.get()
@@ -231,3 +231,4 @@ def notificar(info,wait=2):
 
 
 
+    

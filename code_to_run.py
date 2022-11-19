@@ -36,7 +36,14 @@ def show_menu(player:Player):
 
 
 def comprar(sitio:Nodo,player:Player):
-    data.menu_compra(sitio,player)
+    #data.menu_compra(sitio,player)
+    op = input()
+    if op  not in ["1","2"]:
+        op = input()
+    if op == "1":
+        data.answer = 1
+    else:
+        data.answer = 0
     if data.answer == 1:
         player.buy(sitio)
     data.answer = 0
