@@ -216,18 +216,18 @@ class Receiver:
 
         root.mainloop()
         
+def notificar(info,wait=2):
+        root = Tk()
+        root.geometry("500x250+550+100")
+        root.resizable(False, False) # Dimensiones
+        def close():
+            root.destroy()
 
-
-"""
-
-
-from Nodo import Propiedad
-x = Receiver()
-dave = Player("david")
-dave.buy(Propiedad(0,"Casa",100,20,"rojo"))
-x.menu_venta(dave)
-
-"""
+        vend = Label(root,text =info,
+        font=("Times",20),fg="black")
+        vend.place(x=100,y=100)
+        root.after(wait*1000,close)
+        root.mainloop()
 
 
 
