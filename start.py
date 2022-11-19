@@ -234,7 +234,7 @@ class Receiver:
 
         root.mainloop()
         
-def notificar(info,wait=2):
+def notificar(info,wait=2,player:Player=None):
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False) # Dimensiones
@@ -245,10 +245,15 @@ def notificar(info,wait=2):
 
         vend = Label(root,text =info,
         font=("Times",20),fg="black")
-        if len(info)<25:
+        if len(info)<20:
             vend.place(x=100,y=100)
         else:
-            vend.place(x=100,y=100)
+            vend.place(x=0,y=100)
         root.after(wait*1000,close)
+        if player is not None:
+            label = Label(root,text =f"Jugador: {player.name}   Dinero:{player.balance}",
+            font=("Times",20),fg="Green")
+            label.place(x=0,y=200)
         root.mainloop()
+
 

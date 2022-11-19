@@ -3,6 +3,7 @@ from Board import Board
 from Nodo import Ferrocarril,Servicio
 from random import randint
 from sound import jail_sound
+from start import notificar
 class Game:
     def __init__(self,board:Board) -> None:
         """
@@ -70,10 +71,12 @@ class Game:
             total = amount * 4
             print("debe pagar (*4) ",total)
             self.transfer(player.name,target,total)
+            notificar(f"Debe pagar pagar (*4) {total}",3,player)
         else:
             total = amount * 10
             print("debe pagar (*10) ",total)
             self.transfer(player.name,target,amount*10)
+            notificar(f"Debe pagar pagar (*10) {total}",3,player)
 
     def pagar_ferrocarril(self,player:Player,target):
         """
@@ -85,6 +88,7 @@ class Game:
         total = guia[cantidad]
         print("Debe pagar ",total)
         self.transfer(player.name,target,total)
+        notificar(f"Debe pagar pagar  {total}",3,player)
 
     def sacar_carta(self,file):
         """
@@ -101,6 +105,7 @@ class Game:
             for i in range(select):
                 x = f.readline()
             data = x.split(",")
+        notificar(data[1])
         print("titulo es ",data[1])
         if file == "cofre.txt" or (file=="suerte.txt" and int(data[2])==0 or int(data[2])==1  ):
             return int(data[2]),int(data[3])

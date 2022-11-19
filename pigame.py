@@ -3,7 +3,7 @@ import pygame as pg
 import sys
 from Nodo import *
 from random import randint
-from start import asignar,Receiver
+from start import asignar,Receiver,notificar
 from Player import Player
 from generador import tablero,add_by_turns
 from Game import Game,Player
@@ -80,6 +80,7 @@ def comprar(sitio:Nodo,player:Player):
     data.menu_compra(sitio,player)
     if data.answer == 1:
         player.buy(sitio)
+    
     data.answer = 0
 
 framerate = 60
@@ -159,10 +160,10 @@ while True:
             if die_button.collidepoint(mouse.get_pos()):
                 
                 
-                if player.on_jail:
+                if k.on_jail:
                     print("Turno en carcel de ",k.name,"(encarcelado)")
-                    player.jugar_carcel()
-                    j += 1
+                    k.jugar_carcel()
+
 
                 if not k.on_jail:
                     print("Turno de ",k.name,"ubicado en: ",k.pos) #Nombre y casilla
@@ -206,18 +207,12 @@ while True:
                             draw_player(ventana, orange, four)
                         draw_label(ventana,str(amount))
                         pg.display.flip()
-                    if repeat == 0 or k.on_jail:
-                        j += 1
-                        
-                    if j == len(g.players):
-                        j = 0
                     sitio = k.pos 
 
                     if isinstance(sitio,Suerte):
                         tipo,goal = g.sacar_carta("suerte.txt")
                         res = g.jugar_suerte(k,tipo,goal)
                         sitio = k.pos
-                        print(f"RES {res}")
                         if res !=None:
                             update_place(numero,res)
                         pg.display.flip()    
@@ -254,16 +249,29 @@ while True:
                     elif isinstance(sitio,Impuesto):
                         print("Debe pagar ",sitio.pago)
                         k.withdraw(sitio.pago)
+                        notificar(f"Debe pagar {sitio.pago}")
                     
                     elif isinstance(sitio,Nodo):
                         print("sitio es",sitio," loc ",sitio.loc)
                         if sitio.loc==30:
-                            print("A la carcel!")
+                            notificar(f"Ha sido Encarcelado")
                             g.imprison(k)  # Si Nodo es vayase a la carcel
                             update_place(numero,10)
-                            print("i es ",i)
                             pg.display.flip() 
 
+                if k.balance<0:
+                    notificar("Bancarrota posible",2,k)
+                    while k.balance<0 and k.inventory.sellable>0:
+                        print("¡A Vender!")
+                        data.menu_venta(k)
+                    if k.balance<0:
+                        g.remove_player(k.name)
+
+                if repeat == 0 or k.on_jail:
+                        j += 1
+                        
+                if j == len(g.players):
+                    j = 0
                     
                      
                             
@@ -285,11 +293,11 @@ while True:
     draw_button(ventana,die_button, "lanzar dado")
     draw_button(ventana,sell_button, "Vender")
     draw_button(ventana,inv_button,"Inventorio")
-    
-    draw_player(ventana, pink, one)
+    draw_player(ventana, pink, one)  
     draw_player(ventana, black, two)
     draw_player(ventana, blue, three)
     draw_player(ventana, orange, four)
+
     numero = actualplayer.index(actualplayer[j])
     k = g.players.get(actualplayer[j])
     draw_name(ventana, k.name)

@@ -6,7 +6,7 @@
 6,Cumpleaños le da 10 cada uno,4,10
 7,Tarifa de hospital pague 100,2,100
 8,Tarifa escolar pague 50,2,50
-9,Segundo lugar en premio de belleza recibe 10,1,10
+9,Premio de belleza recibe 10,1,10
 10,Heredas 100,1,100
 
 tipo 1 recibir, 2 pagar, 3 pago a todos, 4 recibe de todos
