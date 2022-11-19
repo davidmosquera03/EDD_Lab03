@@ -1,18 +1,34 @@
 from pygame import *
 import pygame as pg
 import sys
+from Nodo import *
 from random import randint
-from start import Receiver
+from start import asignar,Receiver
 from Player import Player
+from generador import tablero,add_by_turns
+from Game import Game,Player
+from sound import theme
 pg.init()
+
+g = Game(tablero)
+data = Receiver()
+turns = asignar()
+
+add_by_turns(turns, g)
+
+actualplayer = []
+for player in g.players.copy().values():
+
+    actualplayer.append(player.name)
+
+
 
 ventana = pg.display.set_mode((1000, 740))
 pg.display.set_caption("Monopoly X Dr. Who")
 
 # colores
-
 black = (0, 0, 0)
-white = (255, 255, 255)
+white = (255, 255, 255) 
 pink = (255, 112, 193)
 blue = (112, 174, 255)
 orange = (255, 114, 48)
@@ -60,6 +76,12 @@ def draw_all():
     draw_player(ventana, blue, three)
     draw_player(ventana, orange, four)
 
+def comprar(sitio:Nodo,player:Player):
+    data.menu_compra(sitio,player)
+    if data.answer == 1:
+        player.buy(sitio)
+    data.answer = 0
+
 framerate = 60
 
 fondo = pg.image.load("img\\tablero.jpeg")
@@ -90,13 +112,15 @@ posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
             34: (694, 311), 35: (691, 374), 36: (697, 423), 37: (695, 492), 38: (697, 550), 
             39: (703, 613)}
 i = 0
-receiver = Receiver()
+v = 0
+w = 0
+z = 0
+j = 0
 jugadores = {pink:one,black:two,blue:three,orange:four}
-from Nodo import Propiedad
-dave = Player("david")
-dave.buy(Propiedad(0,"Casa",100,20,"rojo"))
-dave.inventory["pases"] = 2
+g.start()
 
+
+# theme()
 while True:
     timer.tick(framerate)
 
@@ -110,28 +134,109 @@ while True:
             if die_button.collidepoint(mouse.get_pos()):
                 
                 
-                die = randint(1,12)
-                print(die)
-                for x in range(die):
-                    ventana.blit(fondo,(0,0))
-                    i += 1
-                    if i==len(posiciones):
-                        i=0
-                    one = posiciones[i]
-                    time.delay(500)
-                    draw_player(ventana, pink, one)
+                
 
-                    draw_label(ventana,str(die))
-
-                    pg.display.flip()
+                if not k.on_jail:
+                    print("Turno de ",k.name,"ubicado en: ",k.pos) #Nombre y casilla
+                    amount,repeat = k.jugar_turno()
+                    # mostrar(die,player)
+                    for x in range(amount):
+                        ventana.blit(fondo,(0,0))
                     
-               
+                        if numero == 0:
+                            i += 1
+                        elif numero == 1:
+                            v += 1
+                        elif numero == 2:
+                            w += 1
+                        elif numero == 3:
+                            z += 1
+                    
+                    
+                        if i==len(posiciones):
+                            i=0
+                        elif v==len(posiciones):
+                            v=0
+                        elif w==len(posiciones):
+                            w=0
+                        elif z==len(posiciones):
+                            z=0
+
+                        time.delay(500)
+                        
+                        if numero == 0:
+                            one = posiciones[i]
+                            draw_player(ventana, pink, one)   
+                        elif numero == 1:
+                            two = posiciones[v]
+                            draw_player(ventana, black, two)
+                        elif numero == 2:
+                            three = posiciones[w]
+                            draw_player(ventana, blue, three)
+                        elif numero == 3:
+                            four = posiciones[z]
+                            draw_player(ventana, orange, four)
+                        draw_label(ventana,str(amount))
+                        pg.display.flip()
+                    if repeat == 0:
+                        j += 1
+                    
+                    if j == len(g.players):
+                        j = 0
+                    sitio = k.pos
+
+                    if isinstance(sitio,Suerte):
+                        tipo,goal = g.sacar_carta("suerte.txt")
+                        g.jugar_suerte(k,tipo,goal)
+                        sitio = k.pos
+
+                    if isinstance(sitio,Propiedad): # Propiedad
+                        print("Costo ",sitio.costo,"Renta ",sitio.renta
+                            ," Dueño ",sitio.owner,"color ",sitio.color)
+                        if sitio.owner is None:
+                            comprar(sitio,k)
+                        elif sitio.owner!=k.name:
+                            print("debe pagar ",sitio.renta)
+                            g.transfer(k.name,sitio.owner,sitio.renta)
+                        else:
+                            print("Te relajas en tu propiedad xd ")
+                    
+                    elif isinstance(sitio,Servicio): #Servicio
+                        print("Costo ",sitio.costo," Dueño ",sitio.owner)
+                        if sitio.owner is None:
+                            comprar(sitio,k)
+                        elif sitio.owner!=k.name:
+                            g.pagar_servicio(k,sitio.owner)
+                    
+                    elif isinstance(sitio,Ferrocarril): # Ferrocarril
+                        print("Costo ",sitio.costo," Dueño ",sitio.owner)
+                        if sitio.owner is None:
+                            comprar(sitio,player)
+                        elif sitio.owner!=player.name:
+                            g.pagar_ferrocarril(player,sitio.owner)
+                        
+                    elif isinstance(sitio,Cofre):
+                        tipo,cant = g.sacar_carta("cofre.txt")
+                        g.jugar_cofre(tipo,cant,player)
+
+                    elif isinstance(sitio,Impuesto):
+                        print("Debe pagar ",sitio.pago)
+                        player.withdraw(sitio.pago)
+                    
+                    elif isinstance(sitio,Nodo):
+                        print("sitio es",sitio," loc ",sitio.loc)
+                        if sitio.loc==30:
+                            print("A la carcel!")
+                            g.imprison(player)  # Si Nodo es vayase a la carcel
+                            turnos = 0
 
             if sell_button.collidepoint(mouse.get_pos()):
-                receiver.menu_venta(dave)
+                data.menu_venta(k)
+                print("vendiendo")
 
             if inv_button.collidepoint(mouse.get_pos()):
-                receiver.menu_inventorio(dave)
+                data.menu_inventorio(k)
+                print("inventario :D")
 
 
 
@@ -141,11 +246,12 @@ while True:
     draw_button(ventana,die_button, "lanzar dado")
     draw_button(ventana,sell_button, "Vender")
     draw_button(ventana,inv_button,"Inventorio")
-
+    
     draw_player(ventana, pink, one)
     draw_player(ventana, black, two)
     draw_player(ventana, blue, three)
     draw_player(ventana, orange, four)
-    draw_name(ventana,"Carlos")
+    numero = actualplayer.index(actualplayer[j])
+    k = g.players.get(actualplayer[j])
+    draw_name(ventana, k.name)
     pg.display.flip()
-    

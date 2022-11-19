@@ -307,7 +307,7 @@ class Player:
                 print("Ha pasado por salida y cobra 200")
                 self.deposit(200)
         print(self.name," está en ",self.pos)
-        return again
+        return amount,again
 
     def jugar_carcel(self):
         """
