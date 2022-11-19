@@ -95,6 +95,7 @@ jugadores = {pink:one,black:two,blue:three,orange:four}
 from Nodo import Propiedad
 dave = Player("david")
 dave.buy(Propiedad(0,"Casa",100,20,"rojo"))
+dave.inventory["pases"] = 2
 
 while True:
     timer.tick(framerate)

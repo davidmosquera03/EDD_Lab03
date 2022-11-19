@@ -97,7 +97,7 @@ class Game:
         + data[3]: argumento (depende de tipo)
         """
         select = randint(1,10)
-        with open(file,"r") as f:
+        with open(file,"r",encoding="utf-8") as f: #ÄNDERUNG
             for i in range(select):
                 x = f.readline()
             data = x.split(",")

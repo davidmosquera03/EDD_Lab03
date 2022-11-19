@@ -13,6 +13,7 @@ def asignar():
     root = Tk()
     root.geometry("500x250+550+100")
     root.resizable(False, False)
+    root.title("Monopoly X Dr. Who")
 
     nombres_usados = []
     turns = []
@@ -81,13 +82,13 @@ class Receiver:
         root.geometry("500x250+550+100")
         root.resizable(False, False)
         root.overrideredirect(True)
-        print("MENU")
         def buy():
             sig.destroy()
             comprar.destroy()
             label.config(text=f"Lo ha comprado por {sitio.costo}")
             label1.config(text=f"Costo:{sitio.costo} Dueño:{player.name}")
             self.answer = 1
+            money.config(text = f"Dinero: {player.balance-sitio.costo}")
             root.after(1500,continuar)
             
 
@@ -107,7 +108,11 @@ class Receiver:
         comprar.place(x=100,y=125)  
 
         sig = Button(root,text="No comprar ",font=("Times",12),command=continuar)
-        sig.place(x=200,y=125)    
+        sig.place(x=200,y=125)  
+
+        money = Label(root,text = f"Dinero: {player.balance}",
+        font=("Times",12),fg="green")
+        money.place(x=0,y=200)  
 
         root.mainloop()
     
@@ -115,6 +120,7 @@ class Receiver:
         root = Tk()
         root.geometry("800x250+550+100")
         root.resizable(False, False)
+        root.title("Monopoly X Dr. Who")
 
         def mostrar():
             prop = Label( root,text=f"Propiedades: {player.inventory['propiedades']}",
@@ -136,6 +142,10 @@ class Receiver:
             colors = Label(root,text = f"Colores {player.inventory.colores}",
             font=("Times",12),fg="blue")
             colors.place(x=0,y=120)
+
+            money = Label(root,text = f"Dinero: {player.balance}",
+            font=("Times",12),fg="green")
+            money.place(x=0,y=150)
 
         def seguir():
             root.destroy()
@@ -161,7 +171,8 @@ class Receiver:
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False) # Dimensiones
-        print("MENU")
+        root.title("Monopoly X Dr. Who")
+
         def vender():
             type = tipo.get()
             s = entry.get()
@@ -175,9 +186,11 @@ class Receiver:
                     error.config(text=f"Vendido {s}")
                 else:
                     error.config(text=f"{s} no hallado")
+            money.config(text = f"Dinero: {player.balance}")
             root.after(1000,reset)
 
         def reset():
+            money.config(text = f"Dinero: {player.balance}")
             error.config(text="")
 
         def vender_pase():
@@ -186,13 +199,14 @@ class Receiver:
                 error.config(text="Vendido 1 Pase")
             else:
                 error.config(text="No tiene pases")
+            money.config(text = f"Dinero: {player.balance}")
             root.after(500,reset)
 
         tipo = Entry(root,font=("Times",12),justify="center")
-        tipo.place(x=100,y=80)
+        tipo.place(x=150,y=80)
 
         entry = Entry(root,font=("Times",12),justify="center")
-        entry.place(x=100,y=120)
+        entry.place(x=150,y=120)
     
        
 
@@ -203,16 +217,20 @@ class Receiver:
         btn3.place(x=210,y=160)
 
         vend = Label(root,text = f"Escriba 1 Propiedades 2 Ferrocarriles 3 Servicios \nen entrada superior",
-        font=("Times",12),fg="blue")
-        vend.place(x=0,y=0)
+        font=("Times",15),fg="blue")
+        vend.place(x=50,y=0)
 
         info = Label(root,text = f"Luego el nombre en la otra entrada",
-        font=("Times",12),fg="blue")
+        font=("Times",15),fg="blue")
         info.place(x=100,y=50)
 
         error = Label(root,text = f"",
-        font=("Times",10),fg="red")
+        font=("Times",12),fg="red")
         error.place(x=0,y=200)
+
+        money = Label(root,text = f"Dinero: {player.balance}",
+        font=("Times",12),fg="green")
+        money.place(x=400,y=200)
 
         root.mainloop()
         
@@ -220,15 +238,17 @@ def notificar(info,wait=2):
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False) # Dimensiones
+        root.title("Monopoly X Dr. Who")
+
         def close():
             root.destroy()
 
         vend = Label(root,text =info,
         font=("Times",20),fg="black")
-        vend.place(x=100,y=100)
+        if len(info)<25:
+            vend.place(x=100,y=100)
+        else:
+            vend.place(x=100,y=100)
         root.after(wait*1000,close)
         root.mainloop()
 
-
-
-    
