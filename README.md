@@ -1,5 +1,5 @@
 ![Logo](img//monopoly.png)
-Version 0.85 of the laboratory 3, made in Python.
+Version 1.0 of the laboratory 3, made in Python.
 
 **By TIME LORDS**:watch:: David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
 
@@ -14,7 +14,7 @@ Version 0.85 of the laboratory 3, made in Python.
 - [X] Diseño Visual del tablero
 - [X] Reorganizar nombres
 - [X] Agregar aumento de renta por colores
-- [] Interfaz Gráfica
+- [X] Interfaz Gráfica
  
 ## Minimum requirements
 - [X] Add class diagram
@@ -32,7 +32,7 @@ Version 0.85 of the laboratory 3, made in Python.
 ## Aditional Functions
 - [X] Railroads
 - [X] Services
-- [] Sound effects
+- [X] Sound effects
 - [X] Railroad,Service,Pass selling
 - [X] Color improvement of rent
 

@@ -3,7 +3,7 @@ from Board import Board
 from Nodo import Ferrocarril,Servicio
 from random import randint
 from sound import jail_sound
-from start import notificar
+from start import notificar_transfer,notificar
 class Game:
     def __init__(self,board:Board) -> None:
         """
@@ -35,7 +35,8 @@ class Game:
         """
         self.players[origin].withdraw(amount)
         self.players[target].deposit(amount) 
-        
+        notificar_transfer(f"{self.players[origin].name}:{self.players[origin].balance} y       \
+         {self.players[target].name}:{self.players[target].balance}")
 
     def add_player(self,name):
         """
@@ -72,12 +73,12 @@ class Game:
             total = amount * 4
             print("debe pagar (*4) ",total)
             self.transfer(player.name,target,total)
-            notificar(f"Debe pagar pagar (*4) {total}",3,player)
+            notificar(f"Servicio: Debe pagar (*4) {total}",3,player)
         else:
             total = amount * 10
             print("debe pagar (*10) ",total)
             self.transfer(player.name,target,amount*10)
-            notificar(f"Debe pagar pagar (*10) {total}",3,player)
+            notificar(f"Servicio: Debe pagar (*10) {total}",3,player)
 
     def pagar_ferrocarril(self,player:Player,target):
         """
@@ -89,7 +90,7 @@ class Game:
         total = guia[cantidad]
         print("Debe pagar ",total)
         self.transfer(player.name,target,total)
-        notificar(f"Debe pagar pagar  {total}",3,player)
+        notificar(f"Ferrocarril:Debe pagar {total}",4,player)
 
     def sacar_carta(self,file):
         """

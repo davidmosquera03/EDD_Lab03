@@ -1,6 +1,7 @@
 from Nodo import Nodo,Propiedad,Servicio,Ferrocarril
 from random import randint
 from sound import die_sound,buy_sound
+from start import notificar   
 class Inventory(dict):
     def __init__(self):
         """
@@ -283,6 +284,7 @@ class Player:
         die1 = randint(1,6)
         die2 = randint(1,6)
         print(die1," ",die2)
+        notificar(f"{die1}                  {die2}",1,self)
         if die1==die2:
             again = 1
             self.double_count+=1
@@ -305,6 +307,7 @@ class Player:
             self.pos = self.pos.next
             if self.pos.name == "salida":
                 print("Ha pasado por salida y cobra 200")
+                notificar("Ha pasado por salida y cobra 200",1,self)
                 self.deposit(200)
         print(self.name," está en ",self.pos)
         return amount,again

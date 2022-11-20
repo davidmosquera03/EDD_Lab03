@@ -2,7 +2,6 @@ from tkinter import *
 from sound import die_sound
 from random import randint
 from generador import sort  
-from Player import Player
 
 i = 0
 def asignar():
@@ -59,7 +58,7 @@ def asignar():
     start.place(x=200,y=125)    # Empezar juego
 
     label1 = Label(root,text=f"Jugadores {i}",
-                    font=("Times",10),fg="red")
+                    font=("Times",15),fg="red")
     label1.place(x=0,y=200) #Número de jugadores
 
     root.mainloop()
@@ -77,7 +76,7 @@ class Receiver:
         """
         self.answer = 0
 
-    def menu_compra(self,sitio,player:Player):
+    def menu_compra(self,sitio,player):
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False)
@@ -116,7 +115,7 @@ class Receiver:
 
         root.mainloop()
     
-    def menu_inventorio(self,player:Player):
+    def menu_inventorio(self,player):
         root = Tk()
         root.geometry("800x250+550+100")
         root.resizable(False, False)
@@ -164,7 +163,7 @@ class Receiver:
 
         root.mainloop()
 
-    def menu_venta(self,player:Player):
+    def menu_venta(self,player):
         """
         Menu gráfico de venta de elementos
         """
@@ -234,7 +233,7 @@ class Receiver:
 
         root.mainloop()
         
-def notificar(info,wait=2,player:Player=None):
+def notificar(info,wait=2,player=None):
         root = Tk()
         root.geometry("500x250+550+100")
         root.resizable(False, False) # Dimensiones
@@ -257,3 +256,28 @@ def notificar(info,wait=2,player:Player=None):
         root.mainloop()
 
 
+def notificar_transfer(info,wait=2,player=None):
+    root = Tk()
+    root.geometry("500x250+550+100")
+    root.resizable(False, False) # Dimensiones
+    root.title("Monopoly X Dr. Who")
+
+    def close():
+        root.destroy()
+    tit = Label(root,text ="Debe pagarle a otro jugador",
+    font=("Times",20),fg="red")
+    tit.place(x=100,y=0)
+
+    vend = Label(root,text =info,
+    font=("Times",20),fg="black")
+    if len(info)<20:
+        vend.place(x=100,y=100)
+    else:
+        vend.place(x=0,y=100)
+    root.after(wait*1000,close)
+    if player is not None:
+        label = Label(root,text =f"Jugador: {player.name}   Dinero:{player.balance}",
+        font=("Times",20),fg="Green")
+        label.place(x=0,y=200)
+    root.mainloop()
+    

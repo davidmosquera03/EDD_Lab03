@@ -123,8 +123,8 @@ jugadores = {pink:one,black:two,blue:three,orange:four}
 g.start()
 
 def update_place(numero,new):
-    ventana.blit(fondo, (0,0))
     ventana.blit(layer,(740,0))
+    ventana.blit(fondo, (0,0))
     if numero == 0:
         global i
         i = new
