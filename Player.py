@@ -159,57 +159,7 @@ class Player:
             print("No hallado")
         return found
 
-    def sell_menu(self):
-        """
-        Menu iterativo para vender 
-        """
-        print("Vendibles ",self.inventory.sellable)
-        if self.inventory.sellable !=0:
-            print("1 Propiedades,2 Ferrocarriles,3 Servicios,4 Pases")
-            valid =["1","2","3","4"]
-            op = input()
-            while op not in valid:
-                print("Opcion inválida")
-                op = input()
-        else:
-            op = 0
-        if op =="1":
-            if len(self.inventory["propiedades"])>0:
-                print(self.inventory["propiedades"])
-                print("Seleccione propiedad a vender")
-                s = input()
-                self.sell("propiedades",s)
-            else:
-                print("No tiene propiedades")
-
-        elif op =="2":
-            if len(self.inventory["ferrocarriles"])>0:
-                print(self.inventory["ferrocarriles"])
-                print("Seleccione ferrocarril a vender")
-                s = input()
-                self.sell("ferrocarriles",s)
-            else:
-                print("No tiene ferrocarriles")
-
-        elif op=="3":
-            if len(self.inventory["servicios"])>0:
-                print(self.inventory["servicios"])
-                print("Seleccione servicio a vender")
-                s = input()
-                self.sell("servicios",s)
-            else:
-                print("No tiene servicios")
-
-        elif op=="4":
-            if self.inventory["pases"]>0:
-                self.deposit(50)
-                self.inventory["pases"] -= 1
-            else:
-                print("No tiene pases")
-        if op==0:
-            print("No tiene nada que vender")
-        else:
-            print(self.inventory)
+    
 
     def tksell_menu(self,op,s):
         """
@@ -257,20 +207,6 @@ class Player:
             print("No tiene pases")
         return done
 
-    def broke(self):
-        """
-        El jugador vende del inventorio
-        para evitar la quiebra
-        """
-        print("¡Está en riesgo de quiebra!")
-        while self.balance<0 and self.inventory.sellable>0:
-            print("¡A Vender!")
-            self.sell_menu()
-
-        if self.balance<0 and self.inventory.sellable==0:
-            print("BANCARROTA!")
-        else:
-            print("Se ha salvado")
 
     def throw_die(self):
         """
@@ -284,7 +220,7 @@ class Player:
         die1 = randint(1,6)
         die2 = randint(1,6)
         print(die1," ",die2)
-        notificar(f"{die1}                  {die2}",1,self)
+        notificar(f"                {die1}                  {die2}",1,self)
         if die1==die2:
             again = 1
             self.double_count+=1
@@ -322,6 +258,7 @@ class Player:
         """
         if self.times_on_jail==3:
             print("Multa de 50 para salir")
+            notificar("Multa de 50 para salir ",2,self)
             self.withdraw(50)
             self.on_jail = False
 

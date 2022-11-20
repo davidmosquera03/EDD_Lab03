@@ -1,4 +1,11 @@
 @startuml
+class Receiver{
++answer
++menu_compra()
++menu_inventorio()
++menu_venta()
+}
+
 left to right direction
 class Inventory{
 +sellable:int
@@ -22,6 +29,8 @@ class Player{
 +jugar_turno()
 +jugar_carcel()
 +check_color()
++tksell_menu()
++sell_pass()
 }
 class dict{
 }
@@ -34,6 +43,7 @@ class Game{
 +transfer()
 +imprison()
 +sacar_carta()
++all_pay_one()
 }
 
 class Board{

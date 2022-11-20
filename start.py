@@ -2,7 +2,7 @@ from tkinter import *
 from sound import die_sound
 from random import randint
 from generador import sort  
-
+from Nodo import Propiedad
 i = 0
 def asignar():
     """
@@ -94,14 +94,17 @@ class Receiver:
         def continuar():
             root.destroy()
 
-        label = Label(root,text=f"Ha atterizado en {sitio.name}",
+        label = Label(root,text=f"Ha aterrizado en {sitio.name}",
                         font=("Times",20),fg="red")
         label.place(x=0,y=5) # Etiqueta principal
         
         label1 = Label(root,text=f"Costo:{sitio.costo} Dueño:{sitio.owner}",
                         font=("Times",20),fg="blue")
         label1.place(x=0,y=50) # Etiqueta principal
-
+        if isinstance(sitio,Propiedad):
+            label2 = Label(root,text=f"Renta:{sitio.renta}",
+                        font=("Times",20),fg="blue")
+            label2.place(x=0,y=100) # Etiqueta principal
 
         comprar = Button(root,text="Comprar",font=("Times",12),command=buy)
         comprar.place(x=100,y=125)  
