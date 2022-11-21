@@ -50,6 +50,7 @@ class Game:
         Eliminar un jugador del juego
         """
         del self.players[name]
+        notificar(f"{name} ha sido eliminado")
         print(name," ha sido eliminado")
 
     def imprison(self,player:Player):

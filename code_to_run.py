@@ -137,7 +137,8 @@ while True:
     timer.tick(framerate)
 
     for event in pg.event.get():
-        if event.type == pg.QUIT:
+        if event.type == pg.QUIT or len(actualplayer)==1:
+            notificar("Ha terminado el juego",4)
             pg.quit()
             sys.exit()
             
@@ -244,9 +245,7 @@ while True:
                             update_place(numero,10)
                             pg.display.flip()
                             g.imprison(k)  # Si Nodo es vayase a la carcel
-                            
-                             
-
+                                         
                 if k.balance<0:
                     notificar("Bancarrota posible",2,k)
                     while k.balance<0 and k.inventory.sellable>0:
@@ -254,6 +253,7 @@ while True:
                         data.menu_venta(k)
                     if k.balance<0:
                         g.remove_player(k.name)
+                        actualplayer.remove(k.name) # Remueve jugador
 
                 if repeat == 0 or k.on_jail:
                         j += 1 # cambiar de jugador

@@ -263,13 +263,9 @@ class Player:
             self.on_jail = False
 
         elif self.inventory["pases"]>0:
-            print("Usar pase de salida? 1 si 2 no")
-            op = input()
-            if op =="1":
-                self.inventory["pases"] -= 1
-                self.on_jail = False
-            if op =="2":
-                self.times_on_jail += 1
+            notificar("Ha usado su pase de salida",3)
+            self.inventory["pases"] -= 1
+            self.on_jail = False
         else:
             i =1
             while i<=3 and self.on_jail:
