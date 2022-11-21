@@ -1,4 +1,4 @@
-from Nodo import Nodo,Propiedad,Servicio
+from Nodo import Nodo
 # Ideas: 
 # Se puede usar el patrón de fabrica para las casillas
 # en add_node2 se recibe el nodo ya instanciado, falta fabrica

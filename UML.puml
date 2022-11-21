@@ -82,4 +82,5 @@ Nodo <|-- Ferrocarril
 Nodo <|-- Servicio
 Nodo <|-- Cofre
 Nodo <|-- Suerte
+Receiver -- Player : Maneja compras de
 @enduml

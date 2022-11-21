@@ -45,7 +45,7 @@ def asignar():
 
 
     label = Label(root,text="Escriba su nombre",
-                    font=("Times",15),fg="red")
+                    font=("Times",20,"bold"),fg="red")
     label.place(x=125,y=5) # Etiqueta principal
 
     receiver = Entry(root,font=("Times",15),justify="center")
@@ -113,14 +113,14 @@ class Receiver:
         sig.place(x=200,y=125)  
 
         money = Label(root,text = f"Dinero: {player.balance}",
-        font=("Times",12),fg="green")
+        font=("Times",12,"bold"),fg="green")
         money.place(x=0,y=200)  
 
         root.mainloop()
     
     def menu_inventorio(self,player):
         root = Tk()
-        root.geometry("800x250+550+100")
+        root.geometry("800x250+0+0")
         root.resizable(False, False)
         root.title("Monopoly X Dr. Who")
 
@@ -146,7 +146,7 @@ class Receiver:
             colors.place(x=0,y=120)
 
             money = Label(root,text = f"Dinero: {player.balance}",
-            font=("Times",12),fg="green")
+            font=("Times",12,"bold"),fg="green")
             money.place(x=0,y=150)
 
         def seguir():
@@ -203,20 +203,26 @@ class Receiver:
                 error.config(text="No tiene pases")
             money.config(text = f"Dinero: {player.balance}")
             root.after(500,reset)
+        
+        def inv():
+            self.menu_inventorio(player)
+                
 
         tipo = Entry(root,font=("Times",12),justify="center")
-        tipo.place(x=150,y=80)
+        tipo.place(x=150,y=80) # Parametro 1
 
         entry = Entry(root,font=("Times",12),justify="center")
-        entry.place(x=150,y=120)
-    
-       
+        entry.place(x=150,y=120) # Parametro 2 (Nombre)
+
 
         btn2 = Button(root,text="vender",font=("Times",12),command=vender)
-        btn2.place(x=150,y=160) 
+        btn2.place(x=150,y=160)  # Vender
 
         btn3 = Button(root,text="vender 1 pase",font=("Times",12),command=vender_pase)
-        btn3.place(x=210,y=160)
+        btn3.place(x=210,y=160) #Vender pase de cárcel
+
+        btn4 = Button(root,text="Inventorio",font=("Times",12),command=inv)
+        btn4.place(x=310,y=160)
 
         vend = Label(root,text = f"Escriba 1 Propiedades 2 Ferrocarriles 3 Servicios \nen entrada superior",
         font=("Times",15),fg="blue")
@@ -231,35 +237,48 @@ class Receiver:
         error.place(x=0,y=200)
 
         money = Label(root,text = f"Dinero: {player.balance}",
-        font=("Times",12),fg="green")
+        font=("Times",12,"bold"),fg="green")
         money.place(x=400,y=200)
+
+        vend = Label(root,text = f"Vendibles: {player.inventory.sellable}",
+        font=("Times",15),fg="blue")
+        vend.place(x=150,y=200)
 
         root.mainloop()
         
 def notificar(info,wait=2,player=None):
-        root = Tk()
-        root.geometry("500x250+550+100")
-        root.resizable(False, False) # Dimensiones
-        root.title("Monopoly X Dr. Who")
+    """
+    Información basica para usuario
+    + info: la información 
+    + wait: duración en segundos de ventana
+    + player: Jugador a mostrar info
+    """
+    root = Tk()
+    root.geometry("500x250+550+100")
+    root.resizable(False, False) # Dimensiones
+    root.title("Monopoly X Dr. Who")
 
-        def close():
-            root.destroy()
+    def close():
+        root.destroy()
 
-        vend = Label(root,text =info,
-        font=("Times",20),fg="black")
-        if len(info)<20:
-            vend.place(x=100,y=100)
-        else:
-            vend.place(x=0,y=100)
-        root.after(wait*1000,close)
-        if player is not None:
-            label = Label(root,text =f"Jugador: {player.name}   Dinero:{player.balance}",
-            font=("Times",20),fg="Green")
-            label.place(x=0,y=200)
-        root.mainloop()
+    vend = Label(root,text =info,
+    font=("Times",20),fg="black")
+    if len(info)<20:
+        vend.place(x=100,y=100)
+    else:
+        vend.place(x=0,y=100)
+    root.after(wait*1000,close)
+    if player is not None:
+        label = Label(root,text =f"Jugador: {player.name}   Dinero:{player.balance}",
+        font=("Times",20),fg="Green")
+        label.place(x=0,y=200)
+    root.mainloop()
 
 
-def notificar_transfer(info,wait=2,player=None):
+def notificar_transfer(info,wait=4,player=None):
+    """
+    Muestra resultado de transacción
+    """
     root = Tk()
     root.geometry("500x250+550+100")
     root.resizable(False, False) # Dimensiones

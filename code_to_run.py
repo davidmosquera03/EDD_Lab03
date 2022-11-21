@@ -90,11 +90,6 @@ die_button = Rect(800,100,150,50)
 sell_button = Rect(800,200,150,50)
 inv_button = Rect(800,300,150,50)
 # Forma de botones
-x = 710
-
-
-    
-
 
 posiciones = {0: (711, 699), 1: (613, 702), 2: (551, 699), 3: (491, 700),
             4: (430, 699), 5: (372, 693), 6: (305, 694), 7: (246, 689), 8: (188, 691),
@@ -111,7 +106,6 @@ v = 0
 w = 0
 z = 0
 j = 0
-
 g.start()
 
 def update_place(numero,new):
@@ -266,10 +260,7 @@ while True:
                         
                 if j == len(g.players):
                     j = 0
-                    
-                     
-                            
-                            
+        
 
             if sell_button.collidepoint(mouse.get_pos()):
                 data.menu_venta(k)
@@ -295,7 +286,6 @@ while True:
         draw_player(ventana, blue, three)
     if len(g.players) >= 4:
         draw_player(ventana, orange, four)
-
     numero = actualplayer.index(actualplayer[j]) #Numero de jugador es indice de lista de jugador
     k = g.players.get(actualplayer[j])  # Jugador actual
     draw_name(ventana, k.name)

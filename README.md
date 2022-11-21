@@ -1,7 +1,9 @@
 ![Logo](img//monopoly.png)
-Version 1.0 of the laboratory 3, made in Python.
+Version 1.2 of the laboratory 3, made in Python.
 
-**By TIME LORDS**:watch:: David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
+**By TIME LORDS**:watch: 
+
+David Hernandez, María Solá, Juan Aragón, Kenny Zhu 
 
 ## Roadmap
 - [X] Archivos de casillas, cofre y arca
@@ -41,3 +43,6 @@ Version 1.0 of the laboratory 3, made in Python.
 
 ## Diagrama UML
 ![CLASS_UML](img//CLASS_UML.png)
+
+## Instalaciones Requeridas
++ pygame
